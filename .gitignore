@@ -1,0 +1,12 @@
+.opencode/
+opencode.json
+
+# OS junk
+.DS_Store
+._*
+.Trashes
+.Spotlight-V100/
+Thumbs.db
+ehthumbs.db
+desktop.ini
+$RECYCLE.BIN/
