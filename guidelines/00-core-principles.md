@@ -1,8 +1,9 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
-description: The eight load-bearing principles of documentation deployment, and the anti-patterns each one kills.
+description: The nine load-bearing principles of documentation deployment, and the anti-patterns each one kills.
 tags: [principles, core, anti-patterns]
+version: 1.1
 related:
 - 01-structure
 - 02-document-contract
@@ -18,7 +19,7 @@ who guess where things live. Each symptom has a structural cause.
 
 ## Solution
 
-Eight principles. They are ordered by leverage — earlier ones make later ones obvious.
+Nine principles. They are ordered by leverage — earlier ones make later ones obvious.
 
 ### 1. The files ARE the store
 
@@ -72,6 +73,29 @@ committable.
 An explicit catalog of checks — errors that block the merge, warnings that advise — walked
 before each change lands, turns "is this corpus trustworthy?" into a finishable walk, not a
 feeling. Acceptance criteria are testable, not vague (see [04-validation.md](04-validation.md)).
+
+### 9. During refactors, docs override code
+
+When the corpus documents a codebase *mid-refactor*, the wiki layer is the implementation
+reference: code in flight is **not** to be mimicked. The rule is scoped to the refactor window —
+outside a refactor, merged reality wins and the docs must catch up. Changing code against the
+docs still requires updating the docs in the same change.
+
+> Kills: the *legacy-imitation bug*. A reader that copies the dominant pattern it finds in the
+> source tree re-seeds the anti-pattern the refactor exists to remove.
+
+### Source-of-truth precedence (methodology artifacts)
+
+When artifacts disagree, the winner is fixed, not negotiated:
+
+1. **The contract** ([02-document-contract.md](02-document-contract.md))
+2. **An individual guideline**
+3. **Template / checklist wording**
+4. **Generated artifacts & diagram styling**
+
+A generated artifact that disagrees with the prose is a bug in the generator. A validator that
+disagrees with 02 is a bug in the validator. Recorded decisions (ADRs) are the archaeology of
+*why* — never a rival source of *what is*.
 
 ## When to use
 

@@ -8,10 +8,11 @@ aliases:
 - Template
 related:
 - new-note-checklist
-version: 1.2
+version: 1.3
 status: active
 # supersedes: <old-doc-id>   # optional: id of the note this replaces — omit entirely when unused
 # expires_at: 2027-01-01     # optional: strict YYYY-MM-DD review date — omit entirely when unused
+# moved_from: <old/path.md>  # optional: former path(s) after a move — omit entirely when unused
 ---
 
 # Document Template
@@ -24,11 +25,11 @@ tools that cannot rely on any of it. Without a template, manual maintenance beco
 ## Solution
 
 Copy this file for every new note. The frontmatter is the machine API (7 required keys;
-`supersedes`/`expires_at` optional, format-checked only when present, never present-but-blank).
-The seven body sections give every note the same outline, so a reader always knows where to look
-for the problem, the solution, and the boundaries. Body wikilinks use filename stems
-(`[[payments]]`); `related` uses ids (`payments-flow`); choose destinations with intention,
-not as filler.
+`supersedes`/`expires_at`/`moved_from` optional, format-checked only when present, never
+present-but-blank). The seven body sections give every note the same outline, so a reader always
+knows where to look for the problem, the solution, and the boundaries. Body wikilinks use
+filename stems (`[[payments]]`); `related` uses ids (`payments-flow`); choose destinations with
+intention, not as filler.
 
 ## When to use
 

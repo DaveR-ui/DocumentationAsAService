@@ -1,8 +1,9 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: The agent bootstrap runbook — ordered steps that chain guidelines 00–08 and the Checklists into one executable deployment of a corpus's base documentation, with a greenfield/brownfield branch.
 tags: [bootstrap, workflow, runbook, agents]
+version: 1.1
 related: [00-core-principles, 08-brownfield, bootstrap-checklist]
 ---
 
@@ -28,14 +29,14 @@ restate them.
 
 | # | Do | Read | Check |
 |---|---|---|---|
-| 1 | Absorb the eight principles. | [00-core-principles.md](00-core-principles.md) | none |
+| 1 | Absorb the nine principles. | [00-core-principles.md](00-core-principles.md) | none |
 | 2 | Lay out the tree: entry point, folders, hubs, one topic per file; declare `doc_language` in the README. | [01-structure.md](01-structure.md) | run [bootstrap-checklist](../Checklists/bootstrap-checklist.md) |
 | 3 | Write the FIRST real note before any process. | [02-document-contract.md](02-document-contract.md), [Templates/document-template.md](../Templates/document-template.md) | [new-note-checklist](../Checklists/new-note-checklist.md) |
-| 4 | Create the hub for the note's folder; add the generated `index.md` with marker regions. | [03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md) | index region lists every note (the missing-from-hub and stale-index checks in 04) |
-| 5 | Adopt the review catalog: walk each changed note against it before merging; the Checklists are the mechanism. | [04-validation.md](04-validation.md) | review clean; the catalog walked on every changed note |
+| 4 | Create the hub for the note's folder; add the generated `index.md` and `tag-index.md` with marker regions. | [03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md) | index region lists every note (the missing-from-hub and stale-index checks in 04) |
+| 5 | Adopt the review catalog: walk each changed note against it before merging; the Checklists are the mechanism and `node validate.js` is its machine walk where it exists. | [04-validation.md](04-validation.md) | review clean; the catalog walked on every changed note |
 | 6 | If an agent will operate in this repo: create `docs/project.md`, audit the query loop. | [06-project-md.md](06-project-md.md), [05-agent-navigation.md](05-agent-navigation.md) | every note reachable in ≤ 3 hops from README |
 | 7 | Wire the docs↔machine interface: load tiers, wiring rules. | [07-agent-consumption.md](07-agent-consumption.md) | no dead anchors |
-| 8 | Steady state: the contract applies to new and touched files; decisions append as ADRs. | [03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md), [08-brownfield.md](08-brownfield.md) | review clean against the catalog |
+| 8 | Steady state: the contract applies to new and touched files; decisions append as ADRs under `ADRs/`; missing areas close via 08's gap-close loop. | [03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md), [08-brownfield.md](08-brownfield.md) | review clean against the catalog |
 
 ```mermaid
 flowchart TD
@@ -130,7 +131,7 @@ Two topics, one hub each. Enter here — never by guessing paths.
 
 ## References
 
-- [guidelines/00-core-principles.md](00-core-principles.md) — the eight principles Step 1 absorbs.
+- [guidelines/00-core-principles.md](00-core-principles.md) — the nine principles Step 1 absorbs.
 - [guidelines/01-structure.md](01-structure.md) — tree, hubs, one topic per file (Step 2).
 - [guidelines/02-document-contract.md](02-document-contract.md) — the document contract (Step 3).
 - [guidelines/03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md) — lifecycle

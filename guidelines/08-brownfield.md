@@ -1,8 +1,9 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: Retrofit playbook for already-started projects — slices first (the load-bearing move), one generalities doc per slice, then the ratchet.
 tags: [brownfield, retrofit, slices, generalities, ratchet]
+version: 1.2
 related:
 - 06-project-md
 - 01-structure
@@ -59,10 +60,16 @@ walkthrough of it:
 ```markdown
 ---
 id: <name>-slice
-slice: <name>
+category: <TopicFolder>
+tags:
+- slice
+- generality
+aliases:
+- <Name> slice
+related:
+- <name>-index
+version: 1.0
 status: active
-description: one line — what this slice is
-tags: [slice, generality]
 ---
 # <Name> — Slice Generalities
 ## What this slice is        ← purpose, form ("files ARE the store" style)
@@ -74,6 +81,11 @@ tags: [slice, generality]
 ## Known gaps & accepted debt ← honest "this is broken/unwritten" — feeds the accepted-debt list (Step 5)
 ```
 
+Slice membership is metadata, not a key: it rides on `category` and `tags` — there is no `slice:`
+frontmatter key, and inventing keys is a metadata-outside-contract error. The copyable version —
+the same shape, complete — lives at
+[`../Templates/slice-generalities-template.md`](../Templates/slice-generalities-template.md).
+
 Why *this* step is the most important of all:
 
 - It's the **routing unit**. Every reader's first question — "which part does my task touch?" —
@@ -83,8 +95,13 @@ Why *this* step is the most important of all:
   the territory. Per-file docs scale with the file count: the map grows toward the size of what it
   describes, and keeping it current becomes an unpaid second job nobody finishes. A 1:1-scale map
   is expensive to write and impossible to keep fresh.
+- **It scales OUT through group-keyed sheets**: the doc classes of
+  [01-structure.md](01-structure.md) — a surface catalog or payload contract
+  ([../Templates/interface-surface-template.md](../Templates/interface-surface-template.md)),
+  a UI inventory, troubleshooting entries — attach to the group and the slice row cross-links
+  them. Per-file docs remain the anti-pattern.
 - It's where **search-by-format starts working**: a question's vocabulary lands on a slice row
-  (whose description carries the keywords), which resolves to a path. No cleverness required —
+  (whose Keywords column carries the routing tokens), which resolves to a path. No cleverness required —
   the format does the routing.
 - The **Known gaps** section is what makes the corpus trustworthy from day one: documented
   incompleteness beats silent staleness.
@@ -115,13 +132,33 @@ Adopt the review catalog ([04-validation.md](04-validation.md)) as a merge disci
 explicit **accepted-debt list**: errors block the merge only for the migrated subset; everything
 else is treated as a warning until the ratchet shrinks the debt. The missing-from-hub check has a
 brownfield twin: *a code area missing from the Slices table* — that's the first thing a review
-should chase.
+should chase. The loop that closes it is the gap-close loop below.
 
 ### Step 6 — Machine wiring, conditionally
 
 Only if models will read the repo: the five tiers and five rules of
 [07-agent-consumption.md](07-agent-consumption.md). Brownfield repos usually have the lookup
 targets (steps 1–2) before any wiring exists — which is exactly the right order.
+
+### Gap-close loop (brownfield twin of "missing from its hub")
+
+A review chases a missing area; the loop closes it:
+
+1. **Search** the corpus for the topic — hub rows, the tag index, the Slices table.
+2. **Absent? Write** the note per contract ([02-document-contract.md](02-document-contract.md)).
+3. **Register** it in **both** its hub **and** the tag index — in the same commit.
+
+The loop closes only when all three (note, hub row, tag entry) have landed.
+
+### Moved notes leave provenance
+
+When a note or context-doc moves path, old citations must still resolve. Two legal forms:
+
+- **Tombstone stub** at the old path — a minimal forwarding note whose Solution is the pointer to
+  the new path.
+- **`moved_from:`** — the list of former paths recorded in the moved file's frontmatter.
+
+Pick the stub when external citations are expected; `moved_from` when the move is internal.
 
 ## When to use
 

@@ -1,11 +1,15 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: Three-layer model, folder anatomy, hubs and the one-topic-per-file rule — how to deploy the bibliography on disk.
 tags: [structure, layers, hubs, folders]
+version: 1.2
 related:
 - 00-core-principles
 - 02-document-contract
+- interface-surface-template
+- ui-inventory-template
+- troubleshooting-template
 ---
 
 # Structure: How the Bibliography Is Deployed
@@ -53,13 +57,20 @@ flowchart TB
 corpus/
 ├── README.md            ← THE entry point: what this corpus is, how to navigate, the rules
 ├── index.md             ← generated: overview stats + full tree with ids (marker-delimited)
+├── tag-index.md         ← generated: tag → docs inverted index (marker-delimited)
 ├── Templates/           ← schema layer: the document contract, made copyable
 ├── Checklists/          ← schema layer in prose: validation you run by hand
+├── ADRs/                ← decision records (append-only)
+│   ├── adr-index.md     ← the hub: lists the adr-NNNN-<slug>.md files
+│   └── adr-0001-<slug>.md
 ├── <TopicFolder>/       ← ONE folder per major area (2–7 folders beats 30 shallow ones)
 │   ├── <topic>-index.md ← the hub: gatekeeper of the folder
 │   └── note-a.md        ← notes: one topic per file
 └── diagrams/            ← derived visual artifacts (read-only, never source of truth)
 ```
+
+The tag index is rebuilt by the same pipeline as `index.md` (see
+[03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md)).
 
 Rules that make the tree navigable:
 
@@ -67,7 +78,9 @@ Rules that make the tree navigable:
 2. **Every folder has exactly one hub** (`<folder>-index.md`): what belongs here, what's in here
    (linked list), what belongs elsewhere. The hub is the *only* file a newcomer reads to enter a
    folder — so a note missing from its hub is invisible (an error at review time — the
-   missing-from-hub check; see [04-validation.md](04-validation.md)).
+   missing-from-hub check; see [04-validation.md](04-validation.md)). Fallback for schema
+   folders: a note in a folder *without* a hub (`Templates/`, `Checklists/`) registers via a
+   resolvable markdown link in the entry point's navigation table instead.
 3. **Folders are stable nouns.** Renames are cheap only if links are resolved, never hardcoded
    paths — which is why references go through ids/stems (see
    [02-document-contract.md](02-document-contract.md)).
@@ -78,6 +91,52 @@ Rules that make the tree navigable:
 
 The layout holds well into the low thousands of notes. If a folder exceeds ~30 notes, split it —
 a hub that reads like a phone book stops routing.
+
+### Doc classes — registered sheet shapes
+
+A **doc class** is a recurring sheet shape with a fixed internal anatomy: a note in a topic
+folder under the standard frontmatter contract, registered here and made copyable as a Template.
+Three classes are registered:
+
+| Class | Answers | Keyed by | Copyable shape |
+|---|---|---|---|
+| Interface-surface sheet | what a group exposes (catalog mode) and what its payloads guarantee (contract mode) | functional group / area — NOT per slice | [../Templates/interface-surface-template.md](../Templates/interface-surface-template.md) |
+| UI inventory sheet | which surface to pick, what each one is, how it is used | one inventory per folder; selection guide first | [../Templates/ui-inventory-template.md](../Templates/ui-inventory-template.md) |
+| Troubleshooting sheet | why a symptom happens and how to fix it | exact symptom string as the H2 | [../Templates/troubleshooting-template.md](../Templates/troubleshooting-template.md) |
+
+Rules:
+
+- **Membership rides on `tags`** — an interface-surface sheet picks its mode by tag (e.g.
+  `interface-catalog` / `interface-contract`), never by a new frontmatter key; inventing keys is
+  a metadata-outside-contract error (see [02-document-contract.md](02-document-contract.md)).
+- **Body-shape exception**: each class keeps its documented anatomy; the exception is granted in
+  [02 §2](02-document-contract.md#2-standard-body-sections-7-verbatim-headings-in-order). The
+  frontmatter contract is unchanged for every class.
+- **Interface-surface sheets are group-keyed**: many slices cross-link to one group sheet —
+  several slice rows may name it as their primary doc (see [06-project-md.md](06-project-md.md)).
+- **Troubleshooting symptom headings are exact strings**: the string doubles as the grep target
+  and the Common-Lookups routing key (interplay rule in [06-project-md.md](06-project-md.md)).
+
+### Placement decisions — when to add / when NOT to add
+
+Ask what kind of thing you're about to write, then stop at the first match:
+
+| The thing is… | It goes… |
+|---|---|
+| a new durable answer | a note in a topic folder + registration in its hub |
+| a recurring symptom string | **Common Lookups** in `project.md` (see [06-project-md.md](06-project-md.md)) |
+| a group's surface catalog or payload contract | an **interface-surface sheet** in the group's folder — [../Templates/interface-surface-template.md](../Templates/interface-surface-template.md) |
+| an inventory readers choose among (components, styles, tokens) | a **UI inventory sheet** — [../Templates/ui-inventory-template.md](../Templates/ui-inventory-template.md) |
+| a symptom write-up (root cause + fix) | a **troubleshooting sheet** — [../Templates/troubleshooting-template.md](../Templates/troubleshooting-template.md); the *routing string* itself goes to Common Lookups in `project.md` |
+| a rule that governs shape | contract text in [02-document-contract.md](02-document-contract.md) + an ADR if it changes the schema |
+| a new copyable shape others should instantiate | a Template in `Templates/` (+ registration in the README navigation table) — not if it merely restates contract text in [02-document-contract.md](02-document-contract.md) |
+| a procedure you run by hand | a Checklist |
+| a decision that was debated | an ADR under `ADRs/` (append-only) |
+| a source awaiting distillation | Raw (outside the served root) |
+| a visual overview | `diagrams/` — derived only, never a source of truth |
+
+When nothing matches: **do not create a file that only duplicates a hub row**, and **do not
+pre-create folders** (see the speculative-tree rule under "When not to use").
 
 ## When to use
 

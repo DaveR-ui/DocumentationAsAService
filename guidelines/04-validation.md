@@ -1,8 +1,9 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: The review catalog pattern — a named catalog of checks a reader walks against changed notes, with errors that block the merge and warnings that advise.
 tags: [validation, review, catalog, contract]
+version: 1.1
 related:
 - 02-document-contract
 - 03-lifecycle-and-generated-files
@@ -30,10 +31,10 @@ with what actually bites you.
 | **metadata outside the contract** | All required frontmatter keys present, `status` in enum, optional lifecycle keys format-valid **only if present** | metadata drift, "mood statuses" |
 | **duplicate ids** | The same id claimed by more than one note | two truths claiming one name |
 | **dangling related target** | A `related` entry that resolves to no note | graph rot in the semantic vocabulary |
-| **dangling link** | Wikilinks (`[[stem]]` not resolving id/stem/alias) where a vault exists; relative markdown links in a vaultless corpus | graph rot in the structural vocabulary |
+| **dangling link** | Wikilinks (`[[stem]]` not resolving id/stem/alias) **and** relative markdown links (missing target path) — both checked unconditionally, no vault distinction. Links inside fenced code blocks are exempt for both kinds; inline code spans exempt wikilinks only: a citation is not a link (mirrors editor rendering) and the citation exemption must never be used to smuggle live markdown links | graph rot in the structural vocabulary |
 | **orphan note** | Zero resolved, non-self edges | content invisible to navigation |
-| **missing from its hub** | A note not listed in its hub (via wikilink **or** internal markdown link) | new content that no entry path reaches |
-| **stale generated index** | Generated index out of sync with the files it indexes | stale entry point |
+| **missing from its hub** | A note not listed in its hub (via wikilink **or** internal markdown link); folders without a hub (`Templates/`, `Checklists/`) register in the entry-point navigation table instead (see [01](01-structure.md)) — the brownfield twin and its gap-close loop live in [08](08-brownfield.md) | new content that no entry path reaches |
+| **stale generated index** | Generated index out of sync with the files it indexes (covers both `index.md` and `tag-index.md` — a stale tag index is the same check) | stale entry point |
 | **secret in prose** | Secret-like tokens in prose or frontmatter (fenced blocks exempt) | accidental credential commits |
 
 ### Warning catalog (advisory)
@@ -89,6 +90,10 @@ A minimum viable review is the two Checklists:
 [../Checklists/new-note-checklist.md](../Checklists/new-note-checklist.md) walks one note,
 [../Checklists/bootstrap-checklist.md](../Checklists/bootstrap-checklist.md) walks the corpus.
 No tools required; a shared vocabulary of check names is the whole machinery.
+
+The catalog also has a machine walk: root `validate.js` — run `node validate.js`. Findings print
+as `path:line — check-name: message`; exit code 1 on errors; `--write` regenerates the generated
+regions, write-if-diff. The Checklists remain the minimum no-tool path.
 
 ## Common mistakes
 
