@@ -8,7 +8,7 @@ aliases:
 - Bootstrap Checklist
 related:
 - 09-bootstrap-workflow
-version: 1.3
+version: 1.4
 status: active
 ---
 
@@ -26,7 +26,7 @@ Order matters: each step makes the next one checkable.
 **Skeleton**
 - [ ] Create root `README.md` — THE single entry point: what the corpus is, how to navigate, the
       rules, the table of docs (`File | Purpose | When to read`).
-- [ ] Declare `doc_language` once, in the README. No exceptions after that.
+- [ ] Declare `doc_language` once, in the README frontmatter. No exceptions after that.
 - [ ] Bring the schema layer in: copy or link `Templates/document-template.md` and the two Checklists.
 - [ ] Create 2–4 topic folders *only when the first real note needs one* — no speculative tree. Each starts with its hub `<folder>-index.md`.
 
@@ -34,13 +34,16 @@ Order matters: each step makes the next one checkable.
 - [ ] Follow the ordered agent runbook: [`../guidelines/09-bootstrap-workflow.md`](../guidelines/09-bootstrap-workflow.md).
 
 **Store guarantees**
-- [ ] `index.md` generated (even by hand + markers to start): overview stats + tree + hub list.
+- [ ] `index.md` and `tag-index.md` generated (create the two files with their marker pairs by hand
+      to start; `node validate.js --write` fills both regions): overview stats +
+      tree + hub list, and the tag → docs inverted index.
 - [ ] Generated aids (index regions, diagrams) are marked as generated and rebuildable — never hand-patched.
 
 **Review discipline from day one**
 - [ ] Adopt the review catalog (see [`../guidelines/04-validation.md`](../guidelines/04-validation.md)) — walk it over your first notes; the two Checklists are the mechanism, no tools required.
 - [ ] Calibrate: walk it against the corpus *as it exists* and demand zero gaps — or write down, explicitly, what you tolerate (accepted debt).
 - [ ] Make the walk a step of every merge the day it catches a real error you agree with.
+- [ ] Walk the catalog with code where it exists: `node validate.js` (errors exit 1).
 
 **Agent-readiness (skip only if this stays a human-only corpus for now)**
 - [ ] Query path is read-only; sandbox rejects absolute paths / `..` / symlink escapes.

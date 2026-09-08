@@ -1,8 +1,10 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: Agent-first guide to creating a project's base documentation — the distilled rules for organizing a Markdown corpus so humans and AI agents navigate it without a database.
 tags: [index, playbook, entry-point, documentation, agents]
+version: 1.2
+doc_language: en
 ---
 
 # Documentation Deployment Playbook
@@ -17,7 +19,7 @@ and navigation are designed, not discovered.*
 ## Start here (agents)
 
 1. Read [guidelines/09-bootstrap-workflow.md](guidelines/09-bootstrap-workflow.md) — the runbook.
-2. Read [guidelines/00-core-principles.md](guidelines/00-core-principles.md) — the eight principles.
+2. Read [guidelines/00-core-principles.md](guidelines/00-core-principles.md) — the nine principles.
 3. Jump to a guideline only when the runbook's step points there. Never guess paths — the
    table below is the map.
 
@@ -25,7 +27,7 @@ and navigation are designed, not discovered.*
 
 | File | Purpose | When to read |
 |---|---|---|
-| [guidelines/00-core-principles.md](guidelines/00-core-principles.md) | The eight load-bearing principles and the anti-patterns they kill. | First principles — reached at runbook Step 1. |
+| [guidelines/00-core-principles.md](guidelines/00-core-principles.md) | The nine load-bearing principles, the anti-patterns they kill, and the source-of-truth precedence list. | First principles — reached at runbook Step 1. |
 | [guidelines/01-structure.md](guidelines/01-structure.md) | Three-layer model, folder anatomy, hubs, one-topic-per-file. | Before creating any folder. |
 | [guidelines/02-document-contract.md](guidelines/02-document-contract.md) | Frontmatter keys, body sections, naming, dual vocabulary. | Before writing any note. |
 | [guidelines/03-lifecycle-and-generated-files.md](guidelines/03-lifecycle-and-generated-files.md) | Status lifecycle (draft/active/superseded/expired; archived out of root), generated-file markers. | When docs start rotting or tools write into human files. |
@@ -35,8 +37,20 @@ and navigation are designed, not discovered.*
 | [guidelines/07-agent-consumption.md](guidelines/07-agent-consumption.md) | The docs↔machine interface: five load tiers, two pipeline stages, five wiring rules. | When a model or tool consumes the docs. |
 | [guidelines/08-brownfield.md](guidelines/08-brownfield.md) | Documenting an already-started project: slices first, then the ratchet. | When the repo exists before its docs do. |
 | [guidelines/09-bootstrap-workflow.md](guidelines/09-bootstrap-workflow.md) | The agent bootstrap runbook: ordered steps chaining 00–08 + the Checklists. | Operational starting point — before touching any file. |
+| [index.md](index.md) | Generated tree + stats (region `index`). Regenerate via `node validate.js --write`. | To see what the corpus holds; before a review. |
+| [tag-index.md](tag-index.md) | Generated tag → docs surface (region `tags`). | When the vocabulary is unknown — search by tag. |
+| [validate.js](validate.js) | The machine walk of 04's catalog: `node validate.js`, exit 1 on errors. | Before every merge, once tooling exists. |
+| [ADRs/adr-index.md](ADRs/adr-index.md) | Decision records (append-only), listed by the ADR hub. | When a rule's *why* is questioned. |
 | [Templates/document-template.md](Templates/document-template.md) | Copyable contract for a new note. | On every new note. |
-| [Checklists/](Checklists/) | New-note and bootstrap checklists. | After writing; before the merge. |
+| [Templates/adr-template.md](Templates/adr-template.md) | Copyable shape for a decision record. | On every structural/schema decision. |
+| [Templates/hub-template.md](Templates/hub-template.md) | Copyable shape for a folder hub (`<folder>-index.md`). | Before creating any folder. |
+| [Templates/project-md-template.md](Templates/project-md-template.md) | Copyable nine-section `project.md` skeleton. | Before letting an agent touch a repo. |
+| [Templates/slice-generalities-template.md](Templates/slice-generalities-template.md) | Copyable shape for a slice generalities doc. | On every brownfield slice (08 Step 1). |
+| [Templates/interface-surface-template.md](Templates/interface-surface-template.md) | Copyable shape for an interface-surface sheet (catalog or contract mode). | When documenting a group's surfaces or payload contract. |
+| [Templates/ui-inventory-template.md](Templates/ui-inventory-template.md) | Copyable shape for a UI/components/styles inventory sheet. | Before adding a surface readers must choose among. |
+| [Templates/troubleshooting-template.md](Templates/troubleshooting-template.md) | Copyable shape for a troubleshooting sheet (quick-ref + deep-dive). | When a symptom string needs its root-cause write-up. |
+| [Checklists/new-note-checklist.md](Checklists/new-note-checklist.md) | New-note checklist. | After writing. |
+| [Checklists/bootstrap-checklist.md](Checklists/bootstrap-checklist.md) | Bootstrap checklist. | Before the merge. |
 | [diagrams/documentation-architecture.html](diagrams/documentation-architecture.html) | Self-contained whiteboard overview of the whole system. | To get the picture in one look. |
 
 ## The system at a glance
@@ -45,7 +59,7 @@ and navigation are designed, not discovered.*
 flowchart LR
     R[Raw sources<br/>unmanaged input] --> W[Wiki layer<br/>curated notes = the store]
     S[Schema layer<br/>templates + review catalog] -.enforces.-> W
-    W --> I[Generated navigation<br/>index.md]
+    W --> I[Generated navigation<br/>index.md + tag-index.md]
     I -.entry points for.-> A[Human readers & AI agents]
     W -.read by.-> A
 ```
@@ -61,6 +75,10 @@ Three operations run on the corpus, matching the three things that go wrong:
 ```
 your-project/
 ├── README.md              ← you are here (the single entry point)
+├── index.md               ← generated tree + stats — `node validate.js --write`
+├── tag-index.md           ← generated tag → docs surface
+├── validate.js            ← the machine walk of 04's catalog; `node validate.js`, exit 1 on errors
+├── ADRs/                  ← decision records (append-only), one hub
 ├── guidelines/            ← the methodology (one topic per file, numbered reading order 00–09)
 ├── Templates/             ← the schema layer applied to this repo itself
 ├── Checklists/            ← executable summaries of the contract

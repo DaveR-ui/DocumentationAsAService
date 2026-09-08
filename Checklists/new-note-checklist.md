@@ -8,7 +8,7 @@ aliases:
 - New Note Checklist
 related:
 - document-template
-version: 1.3
+version: 1.4
 status: active
 ---
 
@@ -28,7 +28,7 @@ objective enough to automate someday; today, the walking is the point.
 - [ ] All 7 required keys present: `id`, `category`, `tags`, `aliases`, `related`, `version`, `status`.
 - [ ] `id` is a slug, unique corpus-wide, ≈ filename stem + category.
 - [ ] `status` ∈ {`draft`, `active`, `superseded`, `expired`} (`archived` notes live outside the served root).
-- [ ] Optional keys (`supersedes`, `expires_at`) either valid or *entirely absent* — never blank.
+- [ ] Optional keys (`supersedes`, `expires_at`, `moved_from`) either valid or *entirely absent* — never blank.
 
 **Body**
 - [ ] H1 title present (`no H1 title` warning), then the 7 sections verbatim and in order.
@@ -37,7 +37,7 @@ objective enough to automate someday; today, the walking is the point.
 
 **Graph**
 - [ ] Every `related` id resolves (the dangling-related-target check).
-- [ ] Every `[[wikilink]]` stem/alias resolves (the dangling-link check).
+- [ ] Every `[[wikilink]]` stem/alias resolves, outside syntax citations — fenced or backticked (the dangling-link check).
 - [ ] Note has ≥1 resolved non-self edge (the orphan-note check) — otherwise it is an island.
 - [ ] Note is listed in its folder's hub via wikilink or markdown link (missing from its hub).
 
@@ -51,8 +51,9 @@ Every note creation or major edit, before the merge.
 
 ## When not to use
 
-Repo-level docs under the lighter context-doc contract (frontmatter `last_updated`, `status`,
-`description`, `tags`) — still check links and language.
+Repo-level docs under the context-doc contract (see
+[`../guidelines/02-document-contract.md`](../guidelines/02-document-contract.md) §4) — required
+keys `last_updated`, `status`, `description`, `tags`, `version` — still check links and language.
 
 ## Examples
 

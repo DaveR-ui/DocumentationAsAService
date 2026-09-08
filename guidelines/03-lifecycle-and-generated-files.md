@@ -1,8 +1,9 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: Document lifecycle (status, supersedes, expires_at) and the contract for machine-generated files.
 tags: [lifecycle, adr, generated-files]
+version: 1.1
 related:
 - 02-document-contract
 - 00-core-principles
@@ -36,7 +37,8 @@ stateDiagram-v2
 - **Supersede, don't rewrite.** When knowledge is replaced, write the successor with
   `supersedes: old-id` and flip the predecessor's status — the old note stays as history with a
   pointer forward. Decision records (ADRs) are *append-only by contract*: an addendum block, never
-  an edit of the original text.
+  an edit of the original text. They live in the root `ADRs/` folder behind its `adr-index.md`
+  hub, named `adr-NNNN-<slug>.md` (see the anatomy in [01-structure.md](01-structure.md)).
 - **`expires_at` is for claims with a shelf life** (roadmaps, version-bound behavior, "as of
   2026-09"). Strict `YYYY-MM-DD`, format-checked only when present. An expired-but-`active` note
   is the classic first row to add to your catalog — 04 invites extending it "with what actually
@@ -44,16 +46,18 @@ stateDiagram-v2
 
 ### 2. Generated-file contract
 
-Root `index.md` (and any hub that aggregates) is machine-generated in **marker-delimited regions**:
+Root `index.md` — and its sibling `tag-index.md`, the tag → docs inverted index (plus any hub
+that aggregates) — are machine-generated in **marker-delimited regions**, one region per artifact
+(`index`, `tags`), rebuilt by the same generator:
 
 ```markdown
 This text is human-owned and survives regeneration.
 
-<!-- BEGIN GENERATED: overview -->
+<!-- BEGIN GENERATED: index -->
 ## Overview
 - Notes indexed: 4
 …
-<!-- END GENERATED: overview -->
+<!-- END GENERATED: index -->
 ```
 
 Binding rules for every generated artifact:
@@ -71,6 +75,23 @@ Binding rules for every generated artifact:
 
 Every generated file carries the date of the snapshot it represents — a footer date is enough.
 Silent staleness is a lie by omission; visible staleness lets the reader decide.
+
+### 4. Version-bump policy
+
+`version` is `MAJOR.MINOR` (a `PATCH` digit is legal for wording-only fixes):
+
+| Change to a file | Bump |
+|---|---|
+| normative, schema, or structural | MINOR |
+| pure wording / typo | PATCH (`MAJOR.MINOR.PATCH`) |
+| contract-breaking | MAJOR — requires an ADR |
+
+- **Baseline**: a context-doc receiving the `version` key for the first time starts at `1.0`.
+  A file receiving `version` for the first time *and* normatively changed in the same batch lands
+  at `1.1` (the batch's MINOR applies); receiving the key with no content change (e.g. guideline
+  07) lands at `1.0`.
+- **Cadence**: every touched file bumps `version` **and** refreshes `last_updated` in the same
+  change.
 
 ## When to use
 

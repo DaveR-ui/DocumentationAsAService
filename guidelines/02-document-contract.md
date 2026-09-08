@@ -1,11 +1,15 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: The per-document contract — required frontmatter keys, standard body sections, naming rules and the dual-vocabulary link model.
 tags: [contract, frontmatter, naming, links, template]
+version: 1.2
 related:
 - 00-core-principles
 - 01-structure
+- interface-surface-template
+- ui-inventory-template
+- troubleshooting-template
 ---
 
 # The Document Contract
@@ -19,9 +23,9 @@ corpus bottleneck.
 ## Solution
 
 Every note in the wiki layer is a copy of the **template**: fixed metadata on top, fixed sections
-below. The contract has three parts.
+below. The contract has four parts.
 
-### 1. Required frontmatter keys (7 + 2 optional)
+### 1. Required frontmatter keys (7 + 3 optional)
 
 | Key | Type | Meaning | Validation |
 |---|---|---|---|
@@ -34,11 +38,13 @@ below. The contract has three parts.
 | `status` | enum | Lifecycle (see [03](03-lifecycle-and-generated-files.md)) | present; one of the enum values |
 | `supersedes` | id | Note this one replaces | optional; format-checked only when present |
 | `expires_at` | `YYYY-MM-DD` | Forced review date | optional; strict format when present; **absent ≡ never expires** |
+| `moved_from` | list of former paths | Provenance after a move (see [08](08-brownfield.md)) | optional; omit entirely when unused |
 
 Iron rules:
 
 - An optional key that is **present but blank** is an error. Omit it entirely.
 - The keys never get renamed or translated — they are the API between writers and tools.
+- Version bumps follow the policy in [03 §4](03-lifecycle-and-generated-files.md#4-version-bump-policy).
 
 ### 2. Standard body sections (7, verbatim headings, in order)
 
@@ -56,8 +62,18 @@ Iron rules:
 Why all seven: the *shape* is what lets a reader stop reading early. "When not to use" plus
 "Common mistakes" are what make an AI's citation trustworthy — they carry the note's boundaries.
 
+Optionally, the single highest-consequence section heading may carry a ` (CRITICAL)` suffix —
+`## Solution (CRITICAL)`. The seven verbatim names stay intact: the marker decorates, tools
+match on prefix. Never more than one per note.
+
 Hubs may shorten sections but must keep the complete frontmatter. Nothing outside the wiki layer
 (config files, generated artifacts) carries the note contract.
+
+Contracted exceptions are docs of **registered doc classes** — each class keeps its documented
+body shape: the slice-generalities docs mandated by [08-brownfield.md](08-brownfield.md)
+(08, Step 1), and the interface-surface, UI-inventory, and troubleshooting sheet classes
+registered in [01-structure.md](01-structure.md). In every case the frontmatter contract is
+unchanged, and a class must not invent frontmatter keys.
 
 ### 3. Naming and the dual vocabulary
 
@@ -83,10 +99,37 @@ flowchart LR
 - **One resolver must accept both** — plus aliases — case-insensitively, in every direction.
   Writers must never ask "which vocabulary does this tool speak?"
 
-Unresolved references in `related`/wikilinks are errors at review (the dangling-target and
-dangling-link checks); the asymmetry is deliberate: prose markdown links are visible to tools but
-not graph-critical — unless the corpus has no vault, where relative links inherit the structural
-role (see [04-validation.md](04-validation.md)).
+Unresolved references in `related`/wikilinks are errors at review (the dangling-related-target
+and dangling-link checks); the markdown-link vs wikilink asymmetry is now semantic — one
+vocabulary is for the graph, one for the prose — not conditional on a vault: the structural-graph
+role of relative links is checked unconditionally. Syntax citations are exempt — inside fenced
+code blocks for both kinds, plus inline code spans for wikilinks (see
+[04-validation.md](04-validation.md) for exact check semantics).
+
+### 4. The context-doc contract
+
+Guidelines and repo-level docs are **context-docs** — the note ceremony (ids, aliases) adds
+nothing for their audience, so they carry their own key set:
+
+| Key | Type | Meaning |
+|---|---|---|
+| `last_updated` | `YYYY-MM-DD` | Date of the last substantive change |
+| `status` | enum | Lifecycle claim (see [03](03-lifecycle-and-generated-files.md)) |
+| `description` | string | One-line summary for navigation tables |
+| `tags` | list | Cross-cutting facets |
+| `version` | number | Contract/content revision (bump policy: [03 §4](03-lifecycle-and-generated-files.md#4-version-bump-policy)) |
+
+Optional: `related` (list), `moved_from` (list of former paths) — present-but-blank is an error
+here too; omit entirely.
+
+Because context-docs carry no `id`, their `related` entries resolve as **filename stems**. The
+entry point (the root README) adds one extra required key, `doc_language`, declared once
+corpus-wide.
+
+**One contract per folder**: a folder serves notes or context-docs, never both. Validator
+consequence: the *metadata outside the contract* check (see
+[04-validation.md](04-validation.md)) selects between two key sets by file class — the note keys
+of §1, the context-doc keys above.
 
 ## When to use
 
@@ -94,9 +137,8 @@ Every new note, before writing a word of prose — copy `Templates/document-temp
 
 ## When not to use
 
-Repo-level documentation (this file included) may use the lighter *context-doc* contract
-(`last_updated`, `status`, `description`, `tags`) when the seven-key ceremony adds no value to a
-consumer — but pick one contract per audience and never mix them in one folder.
+Repo-level documentation (this file included) uses the lighter *context-doc* contract,
+formalized in §4 above — pick one contract per audience and never mix them in one folder.
 
 ## Examples
 

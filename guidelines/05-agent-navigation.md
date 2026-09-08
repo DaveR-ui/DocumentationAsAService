@@ -1,8 +1,9 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: How humans and especially AI agents read the corpus — the query loop, result semantics, citations, sandbox and staleness.
 tags: [agents, navigation, query-loop, sandbox, citations]
+version: 1.2
 related:
 - 01-structure
 - 04-validation
@@ -44,6 +45,15 @@ Corollaries for the corpus designer:
   (guaranteed by the orphan-note and missing-from-hub checks when hubs and links are honest).
 - `tags` and `aliases` exist because grep is the loop's fallback: they are the *vocabulary the
   question will arrive in*, so fill them with what searchers type, not what taxonomists like.
+- **Two generated lookup surfaces** front that fallback: `index.md` (tree + ids) and
+  `tag-index.md` (tag → docs inverted index). When a task arrives in unknown vocabulary, resolve
+  it through the tag index — and the Common Lookups symptom strings of
+  [06-project-md.md](06-project-md.md) — *before* falling back to grep.
+- **Class-fixed shapes are query surfaces** (doc classes: [01-structure.md](01-structure.md)):
+  a troubleshooting symptom heading is the exact grep target; the UI inventory's fast anchor
+  index and the group-keyed interface sheet keep "one question → one hop" honest. When the
+  loop's question arrives in unknown vocabulary, the tag index and the Common Lookups should
+  resolve INTO these class docs.
 
 ### 2. Result semantics are part of the contract
 

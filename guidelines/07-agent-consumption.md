@@ -1,8 +1,9 @@
 ---
-last_updated: 2026-09-06
+last_updated: 2026-09-07
 status: active
 description: The docs-machine interface — the five load tiers and five wiring rules that make a documentation corpus actionable for an automated reader, with one reference implementation shown as an explicit conditional.
 tags: [agents, interface, wiring, delegation, consumption-tiers]
+version: 1.0
 related:
 - 06-project-md
 - 05-agent-navigation
