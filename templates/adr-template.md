@@ -1,6 +1,6 @@
 ---
 id: adr-template
-category: Templates
+category: templates
 tags:
 - template
 - adr
@@ -10,7 +10,7 @@ aliases:
 related:
 - document-template
 - 03-lifecycle-and-generated-files
-version: 1.0
+version: 1.1
 status: active
 ---
 
@@ -24,12 +24,12 @@ append-only shape, ADRs drift into marketing copy for choices already made.
 
 ## Solution
 
-Copy this file for every decision record under `ADRs/`. Naming: `adr-NNNN-<slug>.md`, with id
+Copy this file for every decision record under `adrs/`. Naming: `adr-NNNN-<slug>.md`, with id
 `adr-NNNN-<slug>` — a four-digit sequence, assigned as the next free number, never reused. ADRs
 are **append-only**: never edit the original text; corrections arrive as an addendum block, and
 reversals as a successor ADR carrying `supersedes`. The record keeps the full 7-key note
 frontmatter and the seven verbatim body sections: the decision goes in Solution, the tolerated
-fallout in Common mistakes or an addendum. Register every new ADR in `ADRs/adr-index.md`.
+fallout in Common mistakes or an addendum. Register every new ADR in `adrs/adr-index.md`.
 
 ## When to use
 
@@ -49,7 +49,7 @@ existing behavior, it is a note.
 ```markdown
 ---
 id: adr-NNNN-<slug>
-category: ADRs
+category: adrs
 tags:
 - adr
 - <topic>
@@ -93,14 +93,14 @@ The guidelines and artifacts this decision binds.
 
 - Editing the original text after the fact — a decision record that can be rewritten is
   archaeology falsified; add an addendum block instead.
-- Reusing or back-filling sequence numbers: `NNNN` is the next free number in `ADRs/`, forever.
+- Reusing or back-filling sequence numbers: `NNNN` is the next free number in `adrs/`, forever.
 - Writing an ADR for a non-decision (a fact, a tutorial) — it dilutes the folder's signal.
-- Forgetting to register the new record in `ADRs/adr-index.md` — an unlisted ADR is invisible
+- Forgetting to register the new record in `adrs/adr-index.md` — an unlisted ADR is invisible
   (the missing-from-hub check).
 
 ## References
 
 - [../guidelines/03-lifecycle-and-generated-files.md](../guidelines/03-lifecycle-and-generated-files.md) — lifecycle, ADR placement, version policy.
-- [../guidelines/01-structure.md](../guidelines/01-structure.md) — where `ADRs/` sits in the anatomy.
-- [../ADRs/adr-index.md](../ADRs/adr-index.md) — the hub every new ADR must be registered in.
+- [../guidelines/01-structure.md](../guidelines/01-structure.md) — where `adrs/` sits in the anatomy.
+- [../adrs/adr-index.md](../adrs/adr-index.md) — the hub every new ADR must be registered in.
 - [document-template.md](document-template.md) — the general note shape this specializes.

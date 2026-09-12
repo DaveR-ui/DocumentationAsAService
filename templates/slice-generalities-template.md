@@ -1,6 +1,6 @@
 ---
 id: slice-generalities-template
-category: Templates
+category: templates
 tags:
 - template
 - slice
@@ -10,7 +10,7 @@ aliases:
 related:
 - 08-brownfield
 - hub-template
-version: 1.0
+version: 1.1
 status: active
 ---
 
@@ -47,7 +47,7 @@ the generalities, never replacing them.
 ```markdown
 ---
 id: <name>-slice
-category: <TopicFolder>
+category: <topic-folder>
 tags:
 - slice
 - generality

@@ -28,9 +28,9 @@
  * file carries the bug.
  *
  * Catalog (see guidelines/04 for the normative text):
- *   ERRORS    metadata-outside-contract, duplicate-ids, dangling-related-target,
- *             dangling-link, orphan-note, missing-from-hub, stale-generated-index,
- *             secret-in-prose
+ *   ERRORS    metadata-outside-contract, non-kebab-case-name, duplicate-ids,
+ *             dangling-related-target, dangling-link, orphan-note, missing-from-hub,
+ *             stale-generated-index, secret-in-prose
  *   WARNINGS  no-h1, category-mismatch-folder, near-duplicate-body
  *
  * Reference implementation: small, readable, commented. No cleverness.
@@ -72,6 +72,12 @@ const GENERATED_ARTIFACTS = [
 
 const NOTE_CLASSES = new Set(['note', 'hub', 'adr', 'template', 'checklist']);
 
+// The lowercase kebab-case naming rule (guidelines/02 §3) is enforced from the
+// same shape as the `id` slug (§1) — hence SLUG_RE below. Conventional all-caps
+// root filenames are the one documented exemption; README.md is the only file it
+// covers among the scanned .md set (LICENSE and friends are never collected).
+const NAME_EXEMPT = new Set(['README.md']);
+
 // ----------------------------- File collection & classification ------------------------------
 
 /** Recursively collect all .md files under dir as sorted POSIX relative paths.
@@ -93,16 +99,16 @@ function collectMarkdown(dir, out) {
  *  context-entry; root index.md/tag-index.md -> generated artifact (BEFORE the
  *  hub rule, else tag-index.md looks like a hub by name); any `*-index.md` ->
  *  hub (note contract, body not validated); guidelines/ -> context-doc;
- *  ADRs/ | Templates/ | Checklists/ -> adr | template | checklist; rest -> note. */
+ *  adrs/ | templates/ | checklists/ -> adr | template | checklist; rest -> note. */
 function classify(rel) {
   if (rel === 'README.md') return 'context-entry';
   if (rel === 'index.md' || rel === 'tag-index.md') return 'generated';
   if (rel.slice(rel.lastIndexOf('/') + 1).endsWith('-index.md')) return 'hub';
   const dir = rel.includes('/') ? rel.slice(0, rel.lastIndexOf('/')) : '';
   if (dir === 'guidelines') return 'context-doc';
-  if (dir === 'ADRs') return 'adr';
-  if (dir === 'Templates') return 'template';
-  if (dir === 'Checklists') return 'checklist';
+  if (dir === 'adrs') return 'adr';
+  if (dir === 'templates') return 'template';
+  if (dir === 'checklists') return 'checklist';
   return 'note';
 }
 
@@ -412,7 +418,7 @@ function checkOrphans(docs, out, inn) {
 
 /** - note in a folder containing a hub -> must be referenced BY THE HUB
  *    (wikilink or markdown link to its stem/id/path, i.e. any resolvable edge).
- *  - note in a hub-less folder (Templates/, Checklists/, root-level notes)
+ *  - note in a hub-less folder (templates/, checklists/, root-level notes)
  *    -> must be referenced by a resolvable MARKDOWN link in README.md.
  *  - hubs themselves must also be referenced by a resolvable markdown link in
  *    README.md. */
@@ -437,6 +443,26 @@ function checkHubMembership(docs, out, mdOut) {
       err(d.rel, 1, 'missing-from-hub',
         'note sits in a hub-less folder and is not referenced by a resolvable markdown link in README.md');
     }
+  }
+}
+
+// ----------------------------- ERROR 9: non-kebab-case-name ------------------------------
+
+/** Every scanned file and every folder that holds one must be lowercase
+ *  kebab-case (guidelines/02 §3). README.md is the single documented
+ *  conventional exemption (NAME_EXEMPT). The `id` slug (§1) shares the same
+ *  shape, so both use SLUG_RE. Folders are reported once, on the folder path. */
+function checkNames(docs) {
+  const dirs = new Set();
+  for (const d of docs) {
+    if (d.dir) dirs.add(d.dir);
+    if (!NAME_EXEMPT.has(d.name) && !SLUG_RE.test(d.stem)) {
+      err(d.rel, 1, 'non-kebab-case-name', `filename '${d.name}' is not lowercase kebab-case (guidelines/02 §3)`);
+    }
+  }
+  for (const dir of [...dirs].sort()) {
+    const bad = dir.split('/').find((seg) => !SLUG_RE.test(seg));
+    if (bad) err(dir, 1, 'non-kebab-case-name', `folder '${bad}/' is not lowercase kebab-case (guidelines/02 §3)`);
   }
 }
 
@@ -470,7 +496,7 @@ function renderIndexRegion(docs) {
   const c = classCounts(docs);
   L.push('## Generated index', '', '### Overview', '');
   L.push(`- Markdown files: ${docs.length}`); // total scanned = every walked .md incl. artifacts
-  L.push(`- Context docs: ${c.ctx} | Notes: ${c.note} | Hubs: ${c.hub} | ADRs: ${c.adr} | Templates: ${c.tmpl} | Checklists: ${c.chk}`);
+  L.push(`- Context docs: ${c.ctx} | Notes: ${c.note} | Hubs: ${c.hub} | adrs: ${c.adr} | templates: ${c.tmpl} | checklists: ${c.chk}`);
   L.push('', '### Tree', '');
   const fmt = (d, indent) => `${indent}- ${d.name} ${DASH} ${treeLabel(d)}${idSuffix(d)}`;
   for (const rel of ['README.md', 'tag-index.md']) {
@@ -689,6 +715,7 @@ function main() {
 
   for (const d of docs) checkMetadata(d);
   checkDuplicateIds(docs);
+  checkNames(docs);
   checkSecrets(docs);
   checkOrphans(docs, out, inn);
   checkHubMembership(docs, out, mdOut);

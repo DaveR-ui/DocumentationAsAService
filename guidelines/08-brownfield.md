@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: Retrofit playbook for already-started projects — slices first (the load-bearing move), one generalities doc per slice, then the ratchet.
 tags: [brownfield, retrofit, slices, generalities, ratchet]
-version: 1.2
+version: 1.3
 related:
 - 06-project-md
 - 01-structure
@@ -60,7 +60,7 @@ walkthrough of it:
 ```markdown
 ---
 id: <name>-slice
-category: <TopicFolder>
+category: <topic-folder>
 tags:
 - slice
 - generality
@@ -84,7 +84,7 @@ status: active
 Slice membership is metadata, not a key: it rides on `category` and `tags` — there is no `slice:`
 frontmatter key, and inventing keys is a metadata-outside-contract error. The copyable version —
 the same shape, complete — lives at
-[`../Templates/slice-generalities-template.md`](../Templates/slice-generalities-template.md).
+[`../templates/slice-generalities-template.md`](../templates/slice-generalities-template.md).
 
 Why *this* step is the most important of all:
 
@@ -97,7 +97,7 @@ Why *this* step is the most important of all:
   is expensive to write and impossible to keep fresh.
 - **It scales OUT through group-keyed sheets**: the doc classes of
   [01-structure.md](01-structure.md) — a surface catalog or payload contract
-  ([../Templates/interface-surface-template.md](../Templates/interface-surface-template.md)),
+  ([../templates/interface-surface-template.md](../templates/interface-surface-template.md)),
   a UI inventory, troubleshooting entries — attach to the group and the slice row cross-links
   them. Per-file docs remain the anti-pattern.
 - It's where **search-by-format starts working**: a question's vocabulary lands on a slice row

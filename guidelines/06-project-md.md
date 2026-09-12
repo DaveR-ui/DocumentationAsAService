@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: How to start and maintain docs/project.md — the canonical agent-facing entry point: section anatomy, the Slices routing table, bootstrap order and update cadence.
 tags: [project-md, entry-point, slices, routing, bootstrap]
-version: 1.2
+version: 1.3
 related:
 - 07-agent-consumption
 - 01-structure
@@ -78,9 +78,9 @@ A slice row's primary doc — the file its entry-point paths lead to — may be:
 | Primary-doc type | Shape | Notes |
 |---|---|---|
 | Slice generalities doc | 08 Step 1's fixed shape | the default for every slice |
-| Interface-surface sheet | group catalog or payload contract ([../Templates/interface-surface-template.md](../Templates/interface-surface-template.md)) | many rows may share one group sheet — it is keyed by group, not by slice |
-| UI inventory sheet | selection guide + inventory ([../Templates/ui-inventory-template.md](../Templates/ui-inventory-template.md)) | the slice is a palette readers choose among |
-| Topic note / troubleshooting deep-dive | a contract note, or a deep-dive spoke ([../Templates/troubleshooting-template.md](../Templates/troubleshooting-template.md)) | the slice's substance is one topic or one failure class |
+| Interface-surface sheet | group catalog or payload contract ([../templates/interface-surface-template.md](../templates/interface-surface-template.md)) | many rows may share one group sheet — it is keyed by group, not by slice |
+| UI inventory sheet | selection guide + inventory ([../templates/ui-inventory-template.md](../templates/ui-inventory-template.md)) | the slice is a palette readers choose among |
+| Topic note / troubleshooting deep-dive | a contract note, or a deep-dive spoke ([../templates/troubleshooting-template.md](../templates/troubleshooting-template.md)) | the slice's substance is one topic or one failure class |
 
 The row points at a **class-shaped doc** (classes registered in
 [01-structure.md](01-structure.md)) **or a plain contract topic note** — never a prose pile. Entry
@@ -141,7 +141,7 @@ omnipresent; depth must be on-demand).
 A healthy `project.md` shows every section: a Slices table whose rows carry entry-point paths,
 copy-paste commands with toolchain quirks, conventions that read like a checklist, and a Context
 Index into the strategic docs. The copyable skeleton:
-[../Templates/project-md-template.md](../Templates/project-md-template.md).
+[../templates/project-md-template.md](../templates/project-md-template.md).
 
 ## Common mistakes
 

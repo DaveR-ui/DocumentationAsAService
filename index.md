@@ -6,23 +6,24 @@ by `node validate.js --write` (write-if-diff). Never hand-edit inside the marker
 generator instead (contract: guidelines/03-lifecycle-and-generated-files.md §2).
 
 <!-- BEGIN GENERATED: index -->
-<!-- snapshot: 2026-09-07 -->
+<!-- snapshot: 2026-09-12 -->
 ## Generated index
 
 ### Overview
 
-- Markdown files: 26
-- Context docs: 11 | Notes: 0 | Hubs: 1 | ADRs: 2 | Templates: 8 | Checklists: 2
+- Markdown files: 27
+- Context docs: 11 | Notes: 0 | Hubs: 1 | adrs: 3 | templates: 8 | checklists: 2
 
 ### Tree
 
 - README.md — context-doc (entry)
 - tag-index.md — generated
-- ADRs/
+- adrs/
   - adr-0001-methodology-expansion-2026-09-07.md — adr, id: `adr-0001-methodology-expansion-2026-09-07`
   - adr-0002-doc-classes-expansion-2026-09-07.md — adr, id: `adr-0002-doc-classes-expansion-2026-09-07`
+  - adr-0003-lowercase-kebab-names-2026-09-12.md — adr, id: `adr-0003-lowercase-kebab-names-2026-09-12`
   - adr-index.md — hub, id: `adr-index`
-- Checklists/
+- checklists/
   - bootstrap-checklist.md — checklist, id: `bootstrap-checklist`
   - new-note-checklist.md — checklist, id: `new-note-checklist`
 - guidelines/
@@ -36,7 +37,7 @@ generator instead (contract: guidelines/03-lifecycle-and-generated-files.md §2)
   - 07-agent-consumption.md — context-doc
   - 08-brownfield.md — context-doc
   - 09-bootstrap-workflow.md — context-doc
-- Templates/
+- templates/
   - adr-template.md — template, id: `adr-template`
   - document-template.md — template, id: `document-template`
   - hub-template.md — template, id: `hub-template`

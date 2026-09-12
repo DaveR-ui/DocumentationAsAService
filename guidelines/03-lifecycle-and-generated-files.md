@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: Document lifecycle (status, supersedes, expires_at) and the contract for machine-generated files.
 tags: [lifecycle, adr, generated-files]
-version: 1.1
+version: 1.2
 related:
 - 02-document-contract
 - 00-core-principles
@@ -37,7 +37,7 @@ stateDiagram-v2
 - **Supersede, don't rewrite.** When knowledge is replaced, write the successor with
   `supersedes: old-id` and flip the predecessor's status — the old note stays as history with a
   pointer forward. Decision records (ADRs) are *append-only by contract*: an addendum block, never
-  an edit of the original text. They live in the root `ADRs/` folder behind its `adr-index.md`
+  an edit of the original text. They live in the root `adrs/` folder behind its `adr-index.md`
   hub, named `adr-NNNN-<slug>.md` (see the anatomy in [01-structure.md](01-structure.md)).
 - **`expires_at` is for claims with a shelf life** (roadmaps, version-bound behavior, "as of
   2026-09"). Strict `YYYY-MM-DD`, format-checked only when present. An expired-but-`active` note

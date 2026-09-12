@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: Agent-first guide to creating a project's base documentation — the distilled rules for organizing a Markdown corpus so humans and AI agents navigate it without a database.
 tags: [index, playbook, entry-point, documentation, agents]
-version: 1.2
+version: 1.3
 doc_language: en
 ---
 
@@ -36,21 +36,21 @@ and navigation are designed, not discovered.*
 | [guidelines/06-project-md.md](guidelines/06-project-md.md) | Starting `docs/project.md`: section anatomy, the Slices routing table, bootstrap order. | Before letting an agent touch a repo. |
 | [guidelines/07-agent-consumption.md](guidelines/07-agent-consumption.md) | The docs↔machine interface: five load tiers, two pipeline stages, five wiring rules. | When a model or tool consumes the docs. |
 | [guidelines/08-brownfield.md](guidelines/08-brownfield.md) | Documenting an already-started project: slices first, then the ratchet. | When the repo exists before its docs do. |
-| [guidelines/09-bootstrap-workflow.md](guidelines/09-bootstrap-workflow.md) | The agent bootstrap runbook: ordered steps chaining 00–08 + the Checklists. | Operational starting point — before touching any file. |
+| [guidelines/09-bootstrap-workflow.md](guidelines/09-bootstrap-workflow.md) | The agent bootstrap runbook: ordered steps chaining 00–08 + the checklists. | Operational starting point — before touching any file. |
 | [index.md](index.md) | Generated tree + stats (region `index`). Regenerate via `node validate.js --write`. | To see what the corpus holds; before a review. |
 | [tag-index.md](tag-index.md) | Generated tag → docs surface (region `tags`). | When the vocabulary is unknown — search by tag. |
 | [validate.js](validate.js) | The machine walk of 04's catalog: `node validate.js`, exit 1 on errors. | Before every merge, once tooling exists. |
-| [ADRs/adr-index.md](ADRs/adr-index.md) | Decision records (append-only), listed by the ADR hub. | When a rule's *why* is questioned. |
-| [Templates/document-template.md](Templates/document-template.md) | Copyable contract for a new note. | On every new note. |
-| [Templates/adr-template.md](Templates/adr-template.md) | Copyable shape for a decision record. | On every structural/schema decision. |
-| [Templates/hub-template.md](Templates/hub-template.md) | Copyable shape for a folder hub (`<folder>-index.md`). | Before creating any folder. |
-| [Templates/project-md-template.md](Templates/project-md-template.md) | Copyable nine-section `project.md` skeleton. | Before letting an agent touch a repo. |
-| [Templates/slice-generalities-template.md](Templates/slice-generalities-template.md) | Copyable shape for a slice generalities doc. | On every brownfield slice (08 Step 1). |
-| [Templates/interface-surface-template.md](Templates/interface-surface-template.md) | Copyable shape for an interface-surface sheet (catalog or contract mode). | When documenting a group's surfaces or payload contract. |
-| [Templates/ui-inventory-template.md](Templates/ui-inventory-template.md) | Copyable shape for a UI/components/styles inventory sheet. | Before adding a surface readers must choose among. |
-| [Templates/troubleshooting-template.md](Templates/troubleshooting-template.md) | Copyable shape for a troubleshooting sheet (quick-ref + deep-dive). | When a symptom string needs its root-cause write-up. |
-| [Checklists/new-note-checklist.md](Checklists/new-note-checklist.md) | New-note checklist. | After writing. |
-| [Checklists/bootstrap-checklist.md](Checklists/bootstrap-checklist.md) | Bootstrap checklist. | Before the merge. |
+| [adrs/adr-index.md](adrs/adr-index.md) | Decision records (append-only), listed by the ADR hub. | When a rule's *why* is questioned. |
+| [templates/document-template.md](templates/document-template.md) | Copyable contract for a new note. | On every new note. |
+| [templates/adr-template.md](templates/adr-template.md) | Copyable shape for a decision record. | On every structural/schema decision. |
+| [templates/hub-template.md](templates/hub-template.md) | Copyable shape for a folder hub (`<folder>-index.md`). | Before creating any folder. |
+| [templates/project-md-template.md](templates/project-md-template.md) | Copyable nine-section `project.md` skeleton. | Before letting an agent touch a repo. |
+| [templates/slice-generalities-template.md](templates/slice-generalities-template.md) | Copyable shape for a slice generalities doc. | On every brownfield slice (08 Step 1). |
+| [templates/interface-surface-template.md](templates/interface-surface-template.md) | Copyable shape for an interface-surface sheet (catalog or contract mode). | When documenting a group's surfaces or payload contract. |
+| [templates/ui-inventory-template.md](templates/ui-inventory-template.md) | Copyable shape for a UI/components/styles inventory sheet. | Before adding a surface readers must choose among. |
+| [templates/troubleshooting-template.md](templates/troubleshooting-template.md) | Copyable shape for a troubleshooting sheet (quick-ref + deep-dive). | When a symptom string needs its root-cause write-up. |
+| [checklists/new-note-checklist.md](checklists/new-note-checklist.md) | New-note checklist. | After writing. |
+| [checklists/bootstrap-checklist.md](checklists/bootstrap-checklist.md) | Bootstrap checklist. | Before the merge. |
 | [diagrams/documentation-architecture.html](diagrams/documentation-architecture.html) | Self-contained whiteboard overview of the whole system. | To get the picture in one look. |
 
 ## The system at a glance
@@ -78,9 +78,9 @@ your-project/
 ├── index.md               ← generated tree + stats — `node validate.js --write`
 ├── tag-index.md           ← generated tag → docs surface
 ├── validate.js            ← the machine walk of 04's catalog; `node validate.js`, exit 1 on errors
-├── ADRs/                  ← decision records (append-only), one hub
+├── adrs/                  ← decision records (append-only), one hub
 ├── guidelines/            ← the methodology (one topic per file, numbered reading order 00–09)
-├── Templates/             ← the schema layer applied to this repo itself
-├── Checklists/            ← executable summaries of the contract
+├── templates/             ← the schema layer applied to this repo itself
+├── checklists/            ← executable summaries of the contract
 └── diagrams/              ← derived visual artifacts, read-only, never a source of truth
 ```

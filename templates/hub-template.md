@@ -1,6 +1,6 @@
 ---
 id: hub-template
-category: Templates
+category: templates
 tags:
 - template
 - hub
@@ -10,7 +10,7 @@ aliases:
 related:
 - 01-structure
 - document-template
-version: 1.0
+version: 1.1
 status: active
 ---
 
@@ -38,7 +38,7 @@ second note. Also as the review reference when a missing-from-hub finding appear
 ## When not to use
 
 Not for the root entry point (README is unique — a second "start here" is a maze); not for
-hub-less schema folders (`Templates/`, `Checklists/`), whose files register in the entry point's
+hub-less schema folders (`templates/`, `checklists/`), whose files register in the entry point's
 navigation table instead; never as a content page — duplication makes the hub a rival truth.
 
 ## Examples
@@ -46,7 +46,7 @@ navigation table instead; never as a content page — duplication makes the hub 
 ```markdown
 ---
 id: payments-index
-category: Payments
+category: payments
 tags:
 - hub
 - index
@@ -61,14 +61,14 @@ status: active
 # Payments Index
 
 What belongs here: how money is captured — authorization, settlement, failure handling.
-Anything about *returning* money belongs in `Refunds/` — different lifecycle, different owner.
+Anything about *returning* money belongs in `refunds/` — different lifecycle, different owner.
 
 ## Contents
 - [[payments]] (`payments-flow`) — how a charge is created, then settles or fails.
 
 ## Elsewhere
-- Refund handling → `Refunds/refunds-index.md`
-- Dispute/chargeback policy → `Disputes/disputes-index.md`
+- Refund handling → `refunds/refunds-index.md`
+- Dispute/chargeback policy → `disputes/disputes-index.md`
 ```
 
 Hubs keep the **complete 7-key frontmatter** but may shorten the body — the three duties above

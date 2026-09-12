@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: Three-layer model, folder anatomy, hubs and the one-topic-per-file rule — how to deploy the bibliography on disk.
 tags: [structure, layers, hubs, folders]
-version: 1.2
+version: 1.3
 related:
 - 00-core-principles
 - 02-document-contract
@@ -49,7 +49,7 @@ flowchart TB
   **outside** the served/navigated root, so readers never mistake a clipping for curated truth.
 - **Wiki** is the corpus itself — the only layer a query tool walks by default.
 - **Schema** is what makes wiki self-checking: templates plus the review catalog and the
-  Checklists that make walking it repeatable. A schema nobody checks is a wish.
+  checklists that make walking it repeatable. A schema nobody checks is a wish.
 
 ### Folder anatomy
 
@@ -58,12 +58,12 @@ corpus/
 ├── README.md            ← THE entry point: what this corpus is, how to navigate, the rules
 ├── index.md             ← generated: overview stats + full tree with ids (marker-delimited)
 ├── tag-index.md         ← generated: tag → docs inverted index (marker-delimited)
-├── Templates/           ← schema layer: the document contract, made copyable
-├── Checklists/          ← schema layer in prose: validation you run by hand
-├── ADRs/                ← decision records (append-only)
+├── templates/           ← schema layer: the document contract, made copyable
+├── checklists/          ← schema layer in prose: validation you run by hand
+├── adrs/                ← decision records (append-only)
 │   ├── adr-index.md     ← the hub: lists the adr-NNNN-<slug>.md files
 │   └── adr-0001-<slug>.md
-├── <TopicFolder>/       ← ONE folder per major area (2–7 folders beats 30 shallow ones)
+├── <topic-folder>/       ← ONE folder per major area (2–7 folders beats 30 shallow ones)
 │   ├── <topic>-index.md ← the hub: gatekeeper of the folder
 │   └── note-a.md        ← notes: one topic per file
 └── diagrams/            ← derived visual artifacts (read-only, never source of truth)
@@ -79,13 +79,18 @@ Rules that make the tree navigable:
    (linked list), what belongs elsewhere. The hub is the *only* file a newcomer reads to enter a
    folder — so a note missing from its hub is invisible (an error at review time — the
    missing-from-hub check; see [04-validation.md](04-validation.md)). Fallback for schema
-   folders: a note in a folder *without* a hub (`Templates/`, `Checklists/`) registers via a
+   folders: a note in a folder *without* a hub (`templates/`, `checklists/`) registers via a
    resolvable markdown link in the entry point's navigation table instead.
 3. **Folders are stable nouns.** Renames are cheap only if links are resolved, never hardcoded
    paths — which is why references go through ids/stems (see
    [02-document-contract.md](02-document-contract.md)).
 4. **Derived artifacts are referenced, never referenced-from.** Generated files and `diagrams/`
    point back to prose; no note depends on them to be understood.
+5. **Names are lowercase kebab-case** (`payments-flow.md`, `adrs/`, `templates/`, `checklists/`) —
+   the same shape as the `id` slug (see [02-document-contract.md](02-document-contract.md) §3). The
+   conventional root `README.md` (and its non-Markdown siblings such as `LICENSE`) is the only
+   exemption; no other capital, space or underscore. The rule binds files and folders at every
+   depth, starting with the schema folders.
 
 ### Sizing
 
@@ -100,9 +105,9 @@ Three classes are registered:
 
 | Class | Answers | Keyed by | Copyable shape |
 |---|---|---|---|
-| Interface-surface sheet | what a group exposes (catalog mode) and what its payloads guarantee (contract mode) | functional group / area — NOT per slice | [../Templates/interface-surface-template.md](../Templates/interface-surface-template.md) |
-| UI inventory sheet | which surface to pick, what each one is, how it is used | one inventory per folder; selection guide first | [../Templates/ui-inventory-template.md](../Templates/ui-inventory-template.md) |
-| Troubleshooting sheet | why a symptom happens and how to fix it | exact symptom string as the H2 | [../Templates/troubleshooting-template.md](../Templates/troubleshooting-template.md) |
+| Interface-surface sheet | what a group exposes (catalog mode) and what its payloads guarantee (contract mode) | functional group / area — NOT per slice | [../templates/interface-surface-template.md](../templates/interface-surface-template.md) |
+| UI inventory sheet | which surface to pick, what each one is, how it is used | one inventory per folder; selection guide first | [../templates/ui-inventory-template.md](../templates/ui-inventory-template.md) |
+| Troubleshooting sheet | why a symptom happens and how to fix it | exact symptom string as the H2 | [../templates/troubleshooting-template.md](../templates/troubleshooting-template.md) |
 
 Rules:
 
@@ -125,13 +130,13 @@ Ask what kind of thing you're about to write, then stop at the first match:
 |---|---|
 | a new durable answer | a note in a topic folder + registration in its hub |
 | a recurring symptom string | **Common Lookups** in `project.md` (see [06-project-md.md](06-project-md.md)) |
-| a group's surface catalog or payload contract | an **interface-surface sheet** in the group's folder — [../Templates/interface-surface-template.md](../Templates/interface-surface-template.md) |
-| an inventory readers choose among (components, styles, tokens) | a **UI inventory sheet** — [../Templates/ui-inventory-template.md](../Templates/ui-inventory-template.md) |
-| a symptom write-up (root cause + fix) | a **troubleshooting sheet** — [../Templates/troubleshooting-template.md](../Templates/troubleshooting-template.md); the *routing string* itself goes to Common Lookups in `project.md` |
+| a group's surface catalog or payload contract | an **interface-surface sheet** in the group's folder — [../templates/interface-surface-template.md](../templates/interface-surface-template.md) |
+| an inventory readers choose among (components, styles, tokens) | a **UI inventory sheet** — [../templates/ui-inventory-template.md](../templates/ui-inventory-template.md) |
+| a symptom write-up (root cause + fix) | a **troubleshooting sheet** — [../templates/troubleshooting-template.md](../templates/troubleshooting-template.md); the *routing string* itself goes to Common Lookups in `project.md` |
 | a rule that governs shape | contract text in [02-document-contract.md](02-document-contract.md) + an ADR if it changes the schema |
-| a new copyable shape others should instantiate | a Template in `Templates/` (+ registration in the README navigation table) — not if it merely restates contract text in [02-document-contract.md](02-document-contract.md) |
+| a new copyable shape others should instantiate | a Template in `templates/` (+ registration in the README navigation table) — not if it merely restates contract text in [02-document-contract.md](02-document-contract.md) |
 | a procedure you run by hand | a Checklist |
-| a decision that was debated | an ADR under `ADRs/` (append-only) |
+| a decision that was debated | an ADR under `adrs/` (append-only) |
 | a source awaiting distillation | Raw (outside the served root) |
 | a visual overview | `diagrams/` — derived only, never a source of truth |
 

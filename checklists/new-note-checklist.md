@@ -1,6 +1,6 @@
 ---
 id: new-note-checklist
-category: Checklists
+category: checklists
 tags:
 - checklist
 - contract
@@ -8,7 +8,7 @@ aliases:
 - New Note Checklist
 related:
 - document-template
-version: 1.4
+version: 1.5
 status: active
 ---
 
@@ -67,5 +67,5 @@ Compare a just-written note against the micro-vault in [`../guidelines/09-bootst
 
 ## References
 
-- [../Templates/document-template.md](../Templates/document-template.md) — the contract itself.
+- [../templates/document-template.md](../templates/document-template.md) — the contract itself.
 - [../guidelines/04-validation.md](../guidelines/04-validation.md) — the review catalog this mirrors.

@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: The per-document contract — required frontmatter keys, standard body sections, naming rules and the dual-vocabulary link model.
 tags: [contract, frontmatter, naming, links, template]
-version: 1.2
+version: 1.3
 related:
 - 00-core-principles
 - 01-structure
@@ -77,6 +77,19 @@ unchanged, and a class must not invent frontmatter keys.
 
 ### 3. Naming and the dual vocabulary
 
+**File and folder names are lowercase kebab-case.** A filename is lowercase alphanumerics joined by
+single hyphens (`02-document-contract.md`, `adr-0001-methodology-expansion-2026-09-07.md`), and a
+folder is the same shape without the extension (`guidelines/`, `adrs/`, `templates/`,
+`checklists/`) — never a capital, a space or an underscore. It is the same shape as the `id` slug
+(§1): keep the stem ≈ the id. The conventional all-caps root file `README.md` (and its non-Markdown
+siblings such as `LICENSE`) is the **one documented exemption** — the spelling every reader and tool
+already expects; any other uppercase name is a naming error (the *non-kebab-case name* check in
+[04-validation.md](04-validation.md)). The rule binds files and folders at every depth, including
+the schema folders (`adrs/`, `templates/`, `checklists/`), so links and folder classification can
+never disagree on case.
+
+The link vocabulary is separate from the naming of files:
+
 Two link vocabularies coexist on purpose:
 
 ```mermaid
@@ -133,7 +146,7 @@ of §1, the context-doc keys above.
 
 ## When to use
 
-Every new note, before writing a word of prose — copy `Templates/document-template.md`.
+Every new note, before writing a word of prose — copy `templates/document-template.md`.
 
 ## When not to use
 
@@ -142,7 +155,7 @@ formalized in §4 above — pick one contract per audience and never mix them in
 
 ## Examples
 
-The copyable version lives at [`../Templates/document-template.md`](../Templates/document-template.md);
+The copyable version lives at [`../templates/document-template.md`](../templates/document-template.md);
 the contract instantiated (tree complete, bodies abbreviated) — a micro-vault — in
 [`../guidelines/09-bootstrap-workflow.md`](../guidelines/09-bootstrap-workflow.md).
 

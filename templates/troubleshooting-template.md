@@ -1,6 +1,6 @@
 ---
 id: troubleshooting-template
-category: Templates
+category: templates
 tags:
 - template
 - troubleshooting
@@ -12,7 +12,7 @@ related:
 - 02-document-contract
 - 06-project-md
 - adr-0002-doc-classes-expansion-2026-09-07
-version: 1.0
+version: 1.1
 status: active
 ---
 
@@ -108,5 +108,5 @@ What fails, why it fails that way, and when this became understood. One paragrap
 - [../guidelines/01-structure.md](../guidelines/01-structure.md) — the hub row that registers the sheet.
 - [../guidelines/06-project-md.md](../guidelines/06-project-md.md) — Common Lookups, the routing layer.
 - [../guidelines/05-agent-navigation.md](../guidelines/05-agent-navigation.md) — why exact strings beat prose search for agents.
-- [../ADRs/adr-0002-doc-classes-expansion-2026-09-07.md](../ADRs/adr-0002-doc-classes-expansion-2026-09-07.md) — the class decision.
+- [../adrs/adr-0002-doc-classes-expansion-2026-09-07.md](../adrs/adr-0002-doc-classes-expansion-2026-09-07.md) — the class decision.
 - [document-template.md](document-template.md) — the base note shape.

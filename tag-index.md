@@ -6,10 +6,10 @@ tag, follow the listed ids/stems. Never hand-edit inside the marker pair (contra
 guidelines/03-lifecycle-and-generated-files.md §2).
 
 <!-- BEGIN GENERATED: tags -->
-<!-- snapshot: 2026-09-07 -->
+<!-- snapshot: 2026-09-12 -->
 ## Generated tag index
 
-- **adr** — 03-lifecycle-and-generated-files, adr-0001-methodology-expansion-2026-09-07, adr-0002-doc-classes-expansion-2026-09-07, adr-index, adr-template
+- **adr** — 03-lifecycle-and-generated-files, adr-0001-methodology-expansion-2026-09-07, adr-0002-doc-classes-expansion-2026-09-07, adr-0003-lowercase-kebab-names-2026-09-12, adr-index, adr-template
 - **agents** — 05-agent-navigation, 07-agent-consumption, 09-bootstrap-workflow, README
 - **anti-patterns** — 00-core-principles
 - **bootstrap** — 06-project-md, 09-bootstrap-workflow, bootstrap-checklist
@@ -19,7 +19,7 @@ guidelines/03-lifecycle-and-generated-files.md §2).
 - **citations** — 05-agent-navigation
 - **components** — ui-inventory-template
 - **consumption-tiers** — 07-agent-consumption
-- **contract** — 02-document-contract, 04-validation, adr-0001-methodology-expansion-2026-09-07, document-template, interface-surface-template, new-note-checklist
+- **contract** — 02-document-contract, 04-validation, adr-0001-methodology-expansion-2026-09-07, adr-0003-lowercase-kebab-names-2026-09-12, document-template, interface-surface-template, new-note-checklist
 - **core** — 00-core-principles
 - **decision-record** — adr-template
 - **delegation** — 07-agent-consumption
@@ -39,8 +39,8 @@ guidelines/03-lifecycle-and-generated-files.md §2).
 - **layers** — 01-structure
 - **lifecycle** — 03-lifecycle-and-generated-files, adr-0001-methodology-expansion-2026-09-07
 - **links** — 02-document-contract
-- **methodology** — adr-0001-methodology-expansion-2026-09-07, adr-0002-doc-classes-expansion-2026-09-07
-- **naming** — 02-document-contract
+- **methodology** — adr-0001-methodology-expansion-2026-09-07, adr-0002-doc-classes-expansion-2026-09-07, adr-0003-lowercase-kebab-names-2026-09-12
+- **naming** — 02-document-contract, adr-0003-lowercase-kebab-names-2026-09-12
 - **navigation** — 05-agent-navigation, hub-template
 - **playbook** — README
 - **principles** — 00-core-principles
@@ -54,7 +54,7 @@ guidelines/03-lifecycle-and-generated-files.md §2).
 - **sandbox** — 05-agent-navigation
 - **slice** — slice-generalities-template
 - **slices** — 06-project-md, 08-brownfield
-- **structure** — 01-structure
+- **structure** — 01-structure, adr-0003-lowercase-kebab-names-2026-09-12
 - **styles** — ui-inventory-template
 - **symptoms** — troubleshooting-template
 - **template** — 02-document-contract, adr-template, document-template, hub-template, interface-surface-template, project-md-template, slice-generalities-template, troubleshooting-template, ui-inventory-template

@@ -1,6 +1,6 @@
 ---
 id: document-template
-category: Templates
+category: templates
 tags:
 - template
 - contract
@@ -8,7 +8,7 @@ aliases:
 - Template
 related:
 - new-note-checklist
-version: 1.3
+version: 1.4
 status: active
 # supersedes: <old-doc-id>   # optional: id of the note this replaces — omit entirely when unused
 # expires_at: 2027-01-01     # optional: strict YYYY-MM-DD review date — omit entirely when unused
@@ -46,7 +46,7 @@ sections but must keep the complete frontmatter.
 ```markdown
 ---
 id: my-topic
-category: Architecture
+category: architecture
 tags:
 - pattern
 aliases:
@@ -91,4 +91,4 @@ Sources and links to related notes (for example [[payments]]).
 ## References
 
 - [../guidelines/09-bootstrap-workflow.md](../guidelines/09-bootstrap-workflow.md) — the contract instantiated: the inline micro-vault in its Solution.
-- [../Checklists/new-note-checklist.md](../Checklists/new-note-checklist.md) — the same contract as a checklist.
+- [../checklists/new-note-checklist.md](../checklists/new-note-checklist.md) — the same contract as a checklist.

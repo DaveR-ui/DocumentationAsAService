@@ -1,6 +1,6 @@
 ---
 id: adr-0002-doc-classes-expansion-2026-09-07
-category: ADRs
+category: adrs
 tags:
 - adr
 - methodology
@@ -10,13 +10,14 @@ aliases:
 - Doc Classes Expansion
 related:
 - adr-index
+- adr-0003-lowercase-kebab-names-2026-09-12
 - 01-structure
 - 02-document-contract
 - 06-project-md
 - interface-surface-template
 - ui-inventory-template
 - troubleshooting-template
-version: 1.0
+version: 1.1
 status: active
 ---
 
@@ -100,6 +101,6 @@ Accepted debt, stated honestly:
 - [../guidelines/01-structure.md](../guidelines/01-structure.md) — where the classes are registered.
 - [../guidelines/02-document-contract.md](../guidelines/02-document-contract.md) — the widened §2 exception.
 - [../guidelines/06-project-md.md](../guidelines/06-project-md.md) — Common Lookups, the routing layer.
-- [../Templates/interface-surface-template.md](../Templates/interface-surface-template.md) — class one, both modes.
-- [../Templates/ui-inventory-template.md](../Templates/ui-inventory-template.md) — class two.
-- [../Templates/troubleshooting-template.md](../Templates/troubleshooting-template.md) — class three.
+- [../templates/interface-surface-template.md](../templates/interface-surface-template.md) — class one, both modes.
+- [../templates/ui-inventory-template.md](../templates/ui-inventory-template.md) — class two.
+- [../templates/troubleshooting-template.md](../templates/troubleshooting-template.md) — class three.

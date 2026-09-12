@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: The nine load-bearing principles of documentation deployment, and the anti-patterns each one kills.
 tags: [principles, core, anti-patterns]
-version: 1.1
+version: 1.2
 related:
 - 01-structure
 - 02-document-contract

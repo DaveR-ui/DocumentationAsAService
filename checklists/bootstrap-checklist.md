@@ -1,6 +1,6 @@
 ---
 id: bootstrap-checklist
-category: Checklists
+category: checklists
 tags:
 - checklist
 - bootstrap
@@ -8,7 +8,7 @@ aliases:
 - Bootstrap Checklist
 related:
 - 09-bootstrap-workflow
-version: 1.4
+version: 1.5
 status: active
 ---
 
@@ -27,7 +27,7 @@ Order matters: each step makes the next one checkable.
 - [ ] Create root `README.md` — THE single entry point: what the corpus is, how to navigate, the
       rules, the table of docs (`File | Purpose | When to read`).
 - [ ] Declare `doc_language` once, in the README frontmatter. No exceptions after that.
-- [ ] Bring the schema layer in: copy or link `Templates/document-template.md` and the two Checklists.
+- [ ] Bring the schema layer in: copy or link `templates/document-template.md` and the two checklists.
 - [ ] Create 2–4 topic folders *only when the first real note needs one* — no speculative tree. Each starts with its hub `<folder>-index.md`.
 
 **Runbook**
@@ -40,7 +40,7 @@ Order matters: each step makes the next one checkable.
 - [ ] Generated aids (index regions, diagrams) are marked as generated and rebuildable — never hand-patched.
 
 **Review discipline from day one**
-- [ ] Adopt the review catalog (see [`../guidelines/04-validation.md`](../guidelines/04-validation.md)) — walk it over your first notes; the two Checklists are the mechanism, no tools required.
+- [ ] Adopt the review catalog (see [`../guidelines/04-validation.md`](../guidelines/04-validation.md)) — walk it over your first notes; the two checklists are the mechanism, no tools required.
 - [ ] Calibrate: walk it against the corpus *as it exists* and demand zero gaps — or write down, explicitly, what you tolerate (accepted debt).
 - [ ] Make the walk a step of every merge the day it catches a real error you agree with.
 - [ ] Walk the catalog with code where it exists: `node validate.js` (errors exit 1).
@@ -61,7 +61,7 @@ findings; this checklist is for when there is no catalog walk yet.
 
 ## Examples
 
-This repo dogfoods the checklist: README entry point, numbered guidelines 00–09 (09 is the runbook), Templates/Checklists as the schema layer and the review mechanism, and the micro-vault inline in guideline 09.
+This repo dogfoods the checklist: README entry point, numbered guidelines 00–09 (09 is the runbook), templates/checklists as the schema layer and the review mechanism, and the micro-vault inline in guideline 09.
 
 ## Common mistakes
 

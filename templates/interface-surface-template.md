@@ -1,6 +1,6 @@
 ---
 id: interface-surface-template
-category: Templates
+category: templates
 tags:
 - template
 - interface-surface
@@ -13,7 +13,7 @@ related:
 - 02-document-contract
 - 06-project-md
 - adr-0002-doc-classes-expansion-2026-09-07
-version: 1.0
+version: 1.1
 status: active
 ---
 
@@ -138,6 +138,6 @@ Request row points here; payloads live nowhere else.
 
 - [../guidelines/01-structure.md](../guidelines/01-structure.md) — folder anatomy the sheet lives in.
 - [../guidelines/06-project-md.md](../guidelines/06-project-md.md) — the Slices table that cross-links to it.
-- [../ADRs/adr-0002-doc-classes-expansion-2026-09-07.md](../ADRs/adr-0002-doc-classes-expansion-2026-09-07.md) — the one-class-two-modes decision.
+- [../adrs/adr-0002-doc-classes-expansion-2026-09-07.md](../adrs/adr-0002-doc-classes-expansion-2026-09-07.md) — the one-class-two-modes decision.
 - [document-template.md](document-template.md) — the base note shape this specializes.
 - [slice-generalities-template.md](slice-generalities-template.md) — the slice doc that links here, not vice versa.

@@ -1,6 +1,6 @@
 ---
 id: adr-0001-methodology-expansion-2026-09-07
-category: ADRs
+category: adrs
 tags:
 - adr
 - methodology
@@ -12,12 +12,13 @@ aliases:
 - Methodology Expansion 2026-09-07
 related:
 - adr-index
+- adr-0003-lowercase-kebab-names-2026-09-12
 - 02-document-contract
 - 03-lifecycle-and-generated-files
 - 04-validation
 - 06-project-md
 - 08-brownfield
-version: 1.1
+version: 1.2
 status: active
 ---
 
@@ -156,4 +157,4 @@ the diagram is the *lowest*-precedence artifact precisely because it is derived 
 - [../guidelines/04-validation.md](../guidelines/04-validation.md) — the catalog `validate.js` walks.
 - [../guidelines/06-project-md.md](../guidelines/06-project-md.md) — Keywords column and Common Lookups.
 - [../guidelines/08-brownfield.md](../guidelines/08-brownfield.md) — the corrected generalities shape.
-- [../Templates/adr-template.md](../Templates/adr-template.md) — the shape this record follows.
+- [../templates/adr-template.md](../templates/adr-template.md) — the shape this record follows.

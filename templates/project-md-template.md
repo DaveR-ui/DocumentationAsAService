@@ -1,6 +1,6 @@
 ---
 id: project-md-template
-category: Templates
+category: templates
 tags:
 - template
 - project-md
@@ -10,7 +10,7 @@ aliases:
 related:
 - 06-project-md
 - document-template
-version: 1.0
+version: 1.1
 status: active
 ---
 
@@ -42,7 +42,7 @@ Slices from recent change history).
 ## When not to use
 
 Not a store for strategic reasoning (that's `docs/context/`), not decision history (that's
-`ADRs/`), not a second human README opening with "start here" — pick one canonical agent-facing
+`adrs/`), not a second human README opening with "start here" — pick one canonical agent-facing
 entry point.
 
 ## Examples
