@@ -3,7 +3,7 @@ last_updated: 2026-09-12
 status: active
 description: The nine load-bearing principles of documentation deployment, and the anti-patterns each one kills.
 tags: [principles, core, anti-patterns]
-version: 1.2
+version: 1.3
 related:
 - 01-structure
 - 02-document-contract
@@ -90,7 +90,7 @@ When artifacts disagree, the winner is fixed, not negotiated:
 
 1. **The contract** ([02-document-contract.md](02-document-contract.md))
 2. **An individual guideline**
-3. **Template / checklist wording**
+3. **Template / protocol wording**
 4. **Generated artifacts & diagram styling**
 
 A generated artifact that disagrees with the prose is a bug in the generator. A validator that

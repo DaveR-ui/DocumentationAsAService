@@ -12,7 +12,7 @@ related:
 - 02-document-contract
 - 06-project-md
 - adr-0002-doc-classes-expansion-2026-09-07
-version: 1.1
+version: 1.2
 status: active
 ---
 
@@ -65,7 +65,7 @@ Quick-ref sheet — entries keyed by the verbatim symptom:
 ## build fails: "Module not found: payments/config"
 **Context:** any build right after a folder rename in the payments area.
 **Root cause:** a stale barrel import survived the rename.
-**Fix:** update the import path; the rename checklist now catches this.
+**Fix:** update the import path; the rename protocol now catches this.
 **Reference:** none
 ```
 

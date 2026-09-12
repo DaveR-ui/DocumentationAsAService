@@ -3,7 +3,7 @@ last_updated: 2026-09-12
 status: active
 description: Agent-first guide to creating a project's base documentation — the distilled rules for organizing a Markdown corpus so humans and AI agents navigate it without a database.
 tags: [index, playbook, entry-point, documentation, agents]
-version: 1.3
+version: 1.4
 doc_language: en
 ---
 
@@ -36,7 +36,7 @@ and navigation are designed, not discovered.*
 | [guidelines/06-project-md.md](guidelines/06-project-md.md) | Starting `docs/project.md`: section anatomy, the Slices routing table, bootstrap order. | Before letting an agent touch a repo. |
 | [guidelines/07-agent-consumption.md](guidelines/07-agent-consumption.md) | The docs↔machine interface: five load tiers, two pipeline stages, five wiring rules. | When a model or tool consumes the docs. |
 | [guidelines/08-brownfield.md](guidelines/08-brownfield.md) | Documenting an already-started project: slices first, then the ratchet. | When the repo exists before its docs do. |
-| [guidelines/09-bootstrap-workflow.md](guidelines/09-bootstrap-workflow.md) | The agent bootstrap runbook: ordered steps chaining 00–08 + the checklists. | Operational starting point — before touching any file. |
+| [guidelines/09-bootstrap-workflow.md](guidelines/09-bootstrap-workflow.md) | The agent bootstrap runbook: ordered steps chaining 00–08 + the protocols. | Operational starting point — before touching any file. |
 | [index.md](index.md) | Generated tree + stats (region `index`). Regenerate via `node validate.js --write`. | To see what the corpus holds; before a review. |
 | [tag-index.md](tag-index.md) | Generated tag → docs surface (region `tags`). | When the vocabulary is unknown — search by tag. |
 | [validate.js](validate.js) | The machine walk of 04's catalog: `node validate.js`, exit 1 on errors. | Before every merge, once tooling exists. |
@@ -49,8 +49,8 @@ and navigation are designed, not discovered.*
 | [templates/interface-surface-template.md](templates/interface-surface-template.md) | Copyable shape for an interface-surface sheet (catalog or contract mode). | When documenting a group's surfaces or payload contract. |
 | [templates/ui-inventory-template.md](templates/ui-inventory-template.md) | Copyable shape for a UI/components/styles inventory sheet. | Before adding a surface readers must choose among. |
 | [templates/troubleshooting-template.md](templates/troubleshooting-template.md) | Copyable shape for a troubleshooting sheet (quick-ref + deep-dive). | When a symptom string needs its root-cause write-up. |
-| [checklists/new-note-checklist.md](checklists/new-note-checklist.md) | New-note checklist. | After writing. |
-| [checklists/bootstrap-checklist.md](checklists/bootstrap-checklist.md) | Bootstrap checklist. | Before the merge. |
+| [protocols/new-note-protocol.md](protocols/new-note-protocol.md) | New-note protocol. | After writing. |
+| [protocols/bootstrap-protocol.md](protocols/bootstrap-protocol.md) | Bootstrap protocol. | Before the merge. |
 | [diagrams/documentation-architecture.html](diagrams/documentation-architecture.html) | Self-contained whiteboard overview of the whole system. | To get the picture in one look. |
 
 ## The system at a glance
@@ -81,6 +81,10 @@ your-project/
 ├── adrs/                  ← decision records (append-only), one hub
 ├── guidelines/            ← the methodology (one topic per file, numbered reading order 00–09)
 ├── templates/             ← the schema layer applied to this repo itself
-├── checklists/            ← executable summaries of the contract
+├── protocols/             ← the project's procedures: repeatable tasks you run by hand
 └── diagrams/              ← derived visual artifacts, read-only, never a source of truth
 ```
+
+For a consumer project, the prescribed generated layout is `docs/project.md` plus two folders:
+`docs/context/` for strategic docs and `docs/protocols/` for procedures — see
+[guidelines/06-project-md.md](guidelines/06-project-md.md).

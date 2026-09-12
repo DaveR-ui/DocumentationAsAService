@@ -10,7 +10,7 @@ aliases:
 related:
 - 06-project-md
 - document-template
-version: 1.1
+version: 1.2
 status: active
 ---
 
@@ -30,7 +30,8 @@ Copy the fenced skeleton below as `docs/project.md`. It carries the **context-do
 entry-point-only key `doc_language`, and **nine fixed sections in fixed order, fixed names**:
 Overview, Technology Stack, Slices, Commands, Repository Structure, Key Conventions, Domain
 Entities, Context Index, Common Lookups. Keep it short (~100–150 lines) — its value is being
-read whole, every session; depth lives in `docs/context/`, linked from the Context Index.
+read whole, every session; depth lives in `docs/context/` and procedures in `docs/protocols/`,
+linked from the Context Index.
 
 ## When to use
 
@@ -72,7 +73,7 @@ pattern name. Exactness beats ranges.
 |---|---|---|---|---|
 | api    | HTTP surface, auth, rate limits      | handler, jwt, 429, cors, openapi   | api/, api/handlers/       | coder, tester, reviewer |
 | ui     | Routes, components, client state     | router, form, dialog, css, state    | src/app/, src/components/ | coder, tester           |
-| docs   | Architecture notes, ADRs, onboarding | frontmatter, hub, index, adr, tag   | docs/, docs/context/      | documenter, explorer    |
+| docs   | Architecture notes, ADRs, onboarding | frontmatter, hub, index, adr, tag, protocol | docs/, docs/context/, docs/protocols/ | documenter, explorer |
 
 ## Commands
 | Command | Purpose |
@@ -93,6 +94,7 @@ pattern name. Exactness beats ranges.
 
 ## Context Index
 - docs/context/<topic>.md — its purpose, one line. The doorway, never the room.
+- docs/protocols/<procedure>.md — how to run <procedure>, one line.
 
 ## Common Lookups
 - "build fails with `Cannot find module 'left-pad'`" → docs/context/build-notes.md#missing-modules

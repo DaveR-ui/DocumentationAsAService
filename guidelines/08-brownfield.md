@@ -3,7 +3,7 @@ last_updated: 2026-09-12
 status: active
 description: Retrofit playbook for already-started projects — slices first (the load-bearing move), one generalities doc per slice, then the ratchet.
 tags: [brownfield, retrofit, slices, generalities, ratchet]
-version: 1.3
+version: 1.4
 related:
 - 06-project-md
 - 01-structure
@@ -168,7 +168,7 @@ order for "our docs exist but agents still misunderstand the project".
 ## When not to use
 
 Throwaway prototypes (document the decision to throw). Greenfield starts (use the bootstrap
-checklist instead). And where the docs *are* the product — API references get generated from code
+protocol instead). And where the docs *are* the product — API references get generated from code
 and linked *from* slice docs; they never replace the generalities.
 
 ## Examples

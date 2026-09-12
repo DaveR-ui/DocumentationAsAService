@@ -3,7 +3,7 @@ last_updated: 2026-09-12
 status: active
 description: The review catalog pattern — a named catalog of checks a reader walks against changed notes, with errors that block the merge and warnings that advise.
 tags: [validation, review, catalog, contract]
-version: 1.2
+version: 1.3
 related:
 - 02-document-contract
 - 03-lifecycle-and-generated-files
@@ -34,7 +34,7 @@ with what actually bites you.
 | **dangling related target** | A `related` entry that resolves to no note | graph rot in the semantic vocabulary |
 | **dangling link** | Wikilinks (`[[stem]]` not resolving id/stem/alias) **and** relative markdown links (missing target path) — both checked unconditionally, no vault distinction. Links inside fenced code blocks are exempt for both kinds; inline code spans exempt wikilinks only: a citation is not a link (mirrors editor rendering) and the citation exemption must never be used to smuggle live markdown links | graph rot in the structural vocabulary |
 | **orphan note** | Zero resolved, non-self edges | content invisible to navigation |
-| **missing from its hub** | A note not listed in its hub (via wikilink **or** internal markdown link); folders without a hub (`templates/`, `checklists/`) register in the entry-point navigation table instead (see [01](01-structure.md)) — the brownfield twin and its gap-close loop live in [08](08-brownfield.md) | new content that no entry path reaches |
+| **missing from its hub** | A note not listed in its hub (via wikilink **or** internal markdown link); folders without a hub (`templates/`, `protocols/`) register in the entry-point navigation table instead (see [01](01-structure.md)) — the brownfield twin and its gap-close loop live in [08](08-brownfield.md) | new content that no entry path reaches |
 | **stale generated index** | Generated index out of sync with the files it indexes (covers both `index.md` and `tag-index.md` — a stale tag index is the same check) | stale entry point |
 | **secret in prose** | Secret-like tokens in prose or frontmatter (fenced blocks exempt) | accidental credential commits |
 
@@ -87,14 +87,14 @@ reduced to a clear verdict masquerading as a catalog row erodes trust in the who
 
 ## Examples
 
-A minimum viable review is the two checklists:
-[../checklists/new-note-checklist.md](../checklists/new-note-checklist.md) walks one note,
-[../checklists/bootstrap-checklist.md](../checklists/bootstrap-checklist.md) walks the corpus.
+A minimum viable review is the two protocols:
+[../protocols/new-note-protocol.md](../protocols/new-note-protocol.md) walks one note,
+[../protocols/bootstrap-protocol.md](../protocols/bootstrap-protocol.md) walks the corpus.
 No tools required; a shared vocabulary of check names is the whole machinery.
 
 The catalog also has a machine walk: root `validate.js` — run `node validate.js`. Findings print
 as `path:line — check-name: message`; exit code 1 on errors; `--write` regenerates the generated
-regions, write-if-diff. The checklists remain the minimum no-tool path.
+regions, write-if-diff. The protocols remain the minimum no-tool path.
 
 ## Common mistakes
 

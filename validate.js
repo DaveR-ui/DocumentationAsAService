@@ -70,7 +70,7 @@ const GENERATED_ARTIFACTS = [
   { rel: 'tag-index.md', marker: 'tags' },
 ];
 
-const NOTE_CLASSES = new Set(['note', 'hub', 'adr', 'template', 'checklist']);
+const NOTE_CLASSES = new Set(['note', 'hub', 'adr', 'template', 'protocol']);
 
 // The lowercase kebab-case naming rule (guidelines/02 §3) is enforced from the
 // same shape as the `id` slug (§1) — hence SLUG_RE below. Conventional all-caps
@@ -99,7 +99,7 @@ function collectMarkdown(dir, out) {
  *  context-entry; root index.md/tag-index.md -> generated artifact (BEFORE the
  *  hub rule, else tag-index.md looks like a hub by name); any `*-index.md` ->
  *  hub (note contract, body not validated); guidelines/ -> context-doc;
- *  adrs/ | templates/ | checklists/ -> adr | template | checklist; rest -> note. */
+ *  adrs/ | templates/ | protocols/ -> adr | template | protocol; rest -> note. */
 function classify(rel) {
   if (rel === 'README.md') return 'context-entry';
   if (rel === 'index.md' || rel === 'tag-index.md') return 'generated';
@@ -108,7 +108,7 @@ function classify(rel) {
   if (dir === 'guidelines') return 'context-doc';
   if (dir === 'adrs') return 'adr';
   if (dir === 'templates') return 'template';
-  if (dir === 'checklists') return 'checklist';
+  if (dir === 'protocols') return 'protocol';
   return 'note';
 }
 
@@ -400,7 +400,7 @@ function collectEdges(docs, resolver) {
 
 // ----------------------------- ERROR 5: orphan-note ------------------------------
 
-/** A note-class file (note/hub/adr/template/checklist) with ZERO non-self
+/** A note-class file (note/hub/adr/template/protocol) with ZERO non-self
  *  edges in both directions. EXEMPTION: context-docs (README +
  *  guidelines/) are exempt — they are entry furniture reached through the
  *  entry-point navigation table, not graph content. Generated artifacts and
@@ -418,7 +418,7 @@ function checkOrphans(docs, out, inn) {
 
 /** - note in a folder containing a hub -> must be referenced BY THE HUB
  *    (wikilink or markdown link to its stem/id/path, i.e. any resolvable edge).
- *  - note in a hub-less folder (templates/, checklists/, root-level notes)
+ *  - note in a hub-less folder (templates/, protocols/, root-level notes)
  *    -> must be referenced by a resolvable MARKDOWN link in README.md.
  *  - hubs themselves must also be referenced by a resolvable markdown link in
  *    README.md. */
@@ -469,20 +469,20 @@ function checkNames(docs) {
 // ----------------------------- Generated region rendering (deterministic — byte-stable for unchanged input) ------------------------------
 
 function classCounts(docs) {
-  const c = { ctx: 0, note: 0, hub: 0, adr: 0, tmpl: 0, chk: 0 };
+  const c = { ctx: 0, note: 0, hub: 0, adr: 0, tmpl: 0, proto: 0 };
   for (const d of docs) {
     if (d.cls === 'context-entry' || d.cls === 'context-doc') c.ctx++;
     else if (d.cls === 'hub') c.hub++;
     else if (d.cls === 'adr') c.adr++;
     else if (d.cls === 'template') c.tmpl++;
-    else if (d.cls === 'checklist') c.chk++;
+    else if (d.cls === 'protocol') c.proto++;
     else if (d.cls === 'note') c.note++;
   }
   return c;
 }
 function treeLabel(d) {
   return { 'context-entry': 'context-doc (entry)', 'context-doc': 'context-doc', generated: 'generated',
-    hub: 'hub', adr: 'adr', template: 'template', checklist: 'checklist' }[d.cls] || 'note';
+    hub: 'hub', adr: 'adr', template: 'template', protocol: 'protocol' }[d.cls] || 'note';
 }
 function idSuffix(d) { return NOTE_CLASSES.has(d.cls) && d.id ? `, id: \`${d.id}\`` : ''; }
 
@@ -496,7 +496,7 @@ function renderIndexRegion(docs) {
   const c = classCounts(docs);
   L.push('## Generated index', '', '### Overview', '');
   L.push(`- Markdown files: ${docs.length}`); // total scanned = every walked .md incl. artifacts
-  L.push(`- Context docs: ${c.ctx} | Notes: ${c.note} | Hubs: ${c.hub} | adrs: ${c.adr} | templates: ${c.tmpl} | checklists: ${c.chk}`);
+  L.push(`- Context docs: ${c.ctx} | Notes: ${c.note} | Hubs: ${c.hub} | adrs: ${c.adr} | templates: ${c.tmpl} | protocols: ${c.proto}`);
   L.push('', '### Tree', '');
   const fmt = (d, indent) => `${indent}- ${d.name} ${DASH} ${treeLabel(d)}${idSuffix(d)}`;
   for (const rel of ['README.md', 'tag-index.md']) {

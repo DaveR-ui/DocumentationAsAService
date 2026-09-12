@@ -3,7 +3,7 @@ last_updated: 2026-09-12
 status: active
 description: How to start and maintain docs/project.md — the canonical agent-facing entry point: section anatomy, the Slices routing table, bootstrap order and update cadence.
 tags: [project-md, entry-point, slices, routing, bootstrap]
-version: 1.3
+version: 1.4
 related:
 - 07-agent-consumption
 - 01-structure
@@ -29,8 +29,9 @@ delegation.
 `docs/project.md` is the **canonical entry point, loaded into every agent session** (see
 [07-agent-consumption.md](07-agent-consumption.md) for the wiring). It is not a README: it is a
 contract with fixed sections whose shape downstream consumers rely on. Depth does not live here —
-one topic per strategic doc in `docs/context/`, linked from the Context Index. Keep it short
-(~100–150 lines); its value is *being read whole, every session*.
+one topic per strategic doc in `docs/context/`, linked from the Context Index, and one procedure
+per protocol in `docs/protocols/`. Keep it short (~100–150 lines); its value is *being read whole,
+every session*.
 
 ### Section anatomy (fixed order, fixed names)
 
@@ -43,7 +44,7 @@ one topic per strategic doc in `docs/context/`, linked from the Context Index. K
 | 5 | **Repository Structure** | Compact tree with one-line roles — the human-readable mirror of the hub model. |
 | 6 | **Key Conventions** | Binding, checkable bullets (public API contracts, vocabulary rules, doc_language, invariants). Each is a candidate catalog row (see [04-validation.md](04-validation.md)). |
 | 7 | **Domain Entities** | The corpus's nouns (Note, Hub, Edge kinds, Generated region…) with one-line definitions — the vocabulary every reader (human or machine) reconciles against. |
-| 8 | **Context Index** | Links into `docs/context/*.md` + operational docs, each with purpose. The doorway, never the room. |
+| 8 | **Context Index** | Links into `docs/context/*.md` (strategic facts) and `docs/protocols/*.md` (project procedures), each with purpose. The doorway, never the room. |
 | 9 | **Common Lookups** | Exact user-visible symptom strings (an error message, a failed goal) as navigation keys, each pointing at doc + heading anchor — e.g. build fails with `Cannot find module 'left-pad'` → `build-notes.md#missing-modules`, or "the test runner hangs with no output" → `testing-notes.md#hangs`. |
 
 ### The Slices table
@@ -55,7 +56,7 @@ A **slice** is a major area of the codebase a human has explicitly demarcated. T
 |---|---|---|---|---|
 | api    | HTTP surface, auth, rate limits      | handler, jwt, 429, cors, openapi   | api/, api/handlers/       | coder, tester, reviewer |
 | ui     | Routes, components, client state     | router, form, dialog, css, state    | src/app/, src/components/ | coder, tester           |
-| docs   | Architecture notes, ADRs, onboarding | frontmatter, hub, index, adr, tag   | docs/, docs/context/      | documenter, explorer    |
+| docs   | Architecture notes, ADRs, onboarding | frontmatter, hub, index, adr, tag, protocol | docs/, docs/context/, docs/protocols/ | documenter, explorer |
 ```
 
 Rules that make it work as a router:
@@ -106,7 +107,7 @@ flowchart TD
     S[1 · copy facts from reality:<br/>go.mod / package.json / README] --> P[2 · write Overview, Stack, Commands<br/>by running them once]
     P --> L[3 · draft Slices from directories that<br/>received the last 3 changes]
     L --> C[4 · Conventions: write down only rules<br/>you have already enforced or violated]
-    C --> X[5 · Context Index links to whatever<br/>docs/context/ files exist — even one]
+    C --> X[5 · Context Index links to the docs/context/<br/>and docs/protocols/ files that exist — even one]
     X --> D[6 · declare doc_language in the frontmatter]
     D --> W[never finish with prose depth —<br/>that goes to context docs]
 ```

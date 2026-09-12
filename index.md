@@ -11,8 +11,8 @@ generator instead (contract: guidelines/03-lifecycle-and-generated-files.md §2)
 
 ### Overview
 
-- Markdown files: 27
-- Context docs: 11 | Notes: 0 | Hubs: 1 | adrs: 3 | templates: 8 | checklists: 2
+- Markdown files: 28
+- Context docs: 11 | Notes: 0 | Hubs: 1 | adrs: 4 | templates: 8 | protocols: 2
 
 ### Tree
 
@@ -22,10 +22,8 @@ generator instead (contract: guidelines/03-lifecycle-and-generated-files.md §2)
   - adr-0001-methodology-expansion-2026-09-07.md — adr, id: `adr-0001-methodology-expansion-2026-09-07`
   - adr-0002-doc-classes-expansion-2026-09-07.md — adr, id: `adr-0002-doc-classes-expansion-2026-09-07`
   - adr-0003-lowercase-kebab-names-2026-09-12.md — adr, id: `adr-0003-lowercase-kebab-names-2026-09-12`
+  - adr-0004-protocols-replace-checklists-2026-09-12.md — adr, id: `adr-0004-protocols-replace-checklists-2026-09-12`
   - adr-index.md — hub, id: `adr-index`
-- checklists/
-  - bootstrap-checklist.md — checklist, id: `bootstrap-checklist`
-  - new-note-checklist.md — checklist, id: `new-note-checklist`
 - guidelines/
   - 00-core-principles.md — context-doc
   - 01-structure.md — context-doc
@@ -37,6 +35,9 @@ generator instead (contract: guidelines/03-lifecycle-and-generated-files.md §2)
   - 07-agent-consumption.md — context-doc
   - 08-brownfield.md — context-doc
   - 09-bootstrap-workflow.md — context-doc
+- protocols/
+  - bootstrap-protocol.md — protocol, id: `bootstrap-protocol`
+  - new-note-protocol.md — protocol, id: `new-note-protocol`
 - templates/
   - adr-template.md — template, id: `adr-template`
   - document-template.md — template, id: `document-template`

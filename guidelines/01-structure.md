@@ -3,7 +3,7 @@ last_updated: 2026-09-12
 status: active
 description: Three-layer model, folder anatomy, hubs and the one-topic-per-file rule — how to deploy the bibliography on disk.
 tags: [structure, layers, hubs, folders]
-version: 1.3
+version: 1.4
 related:
 - 00-core-principles
 - 02-document-contract
@@ -36,7 +36,7 @@ flowchart TB
     end
     subgraph SCHEMA[3 · SCHEMA — the rules]
         S1[templates]
-        S2[review catalog + checklists]
+        S2[review catalog + protocols]
         S3[naming & vocabulary rules]
     end
     R1 -->|distilled by a human or agent, then cited| wiki1
@@ -49,7 +49,7 @@ flowchart TB
   **outside** the served/navigated root, so readers never mistake a clipping for curated truth.
 - **Wiki** is the corpus itself — the only layer a query tool walks by default.
 - **Schema** is what makes wiki self-checking: templates plus the review catalog and the
-  checklists that make walking it repeatable. A schema nobody checks is a wish.
+  protocols that make walking it repeatable. A schema nobody checks is a wish.
 
 ### Folder anatomy
 
@@ -59,7 +59,7 @@ corpus/
 ├── index.md             ← generated: overview stats + full tree with ids (marker-delimited)
 ├── tag-index.md         ← generated: tag → docs inverted index (marker-delimited)
 ├── templates/           ← schema layer: the document contract, made copyable
-├── checklists/          ← schema layer in prose: validation you run by hand
+├── protocols/           ← the project's procedures: repeatable tasks you run by hand
 ├── adrs/                ← decision records (append-only)
 │   ├── adr-index.md     ← the hub: lists the adr-NNNN-<slug>.md files
 │   └── adr-0001-<slug>.md
@@ -68,6 +68,9 @@ corpus/
 │   └── note-a.md        ← notes: one topic per file
 └── diagrams/            ← derived visual artifacts (read-only, never source of truth)
 ```
+
+In a consumer project the same schema lives under `docs/`: strategic docs in `docs/context/`
+and project procedures in `docs/protocols/` (see [06-project-md.md](06-project-md.md)).
 
 The tag index is rebuilt by the same pipeline as `index.md` (see
 [03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md)).
@@ -79,14 +82,14 @@ Rules that make the tree navigable:
    (linked list), what belongs elsewhere. The hub is the *only* file a newcomer reads to enter a
    folder — so a note missing from its hub is invisible (an error at review time — the
    missing-from-hub check; see [04-validation.md](04-validation.md)). Fallback for schema
-   folders: a note in a folder *without* a hub (`templates/`, `checklists/`) registers via a
+   folders: a note in a folder *without* a hub (`templates/`, `protocols/`) registers via a
    resolvable markdown link in the entry point's navigation table instead.
 3. **Folders are stable nouns.** Renames are cheap only if links are resolved, never hardcoded
    paths — which is why references go through ids/stems (see
    [02-document-contract.md](02-document-contract.md)).
 4. **Derived artifacts are referenced, never referenced-from.** Generated files and `diagrams/`
    point back to prose; no note depends on them to be understood.
-5. **Names are lowercase kebab-case** (`payments-flow.md`, `adrs/`, `templates/`, `checklists/`) —
+5. **Names are lowercase kebab-case** (`payments-flow.md`, `adrs/`, `templates/`, `protocols/`) —
    the same shape as the `id` slug (see [02-document-contract.md](02-document-contract.md) §3). The
    conventional root `README.md` (and its non-Markdown siblings such as `LICENSE`) is the only
    exemption; no other capital, space or underscore. The rule binds files and folders at every
@@ -135,7 +138,7 @@ Ask what kind of thing you're about to write, then stop at the first match:
 | a symptom write-up (root cause + fix) | a **troubleshooting sheet** — [../templates/troubleshooting-template.md](../templates/troubleshooting-template.md); the *routing string* itself goes to Common Lookups in `project.md` |
 | a rule that governs shape | contract text in [02-document-contract.md](02-document-contract.md) + an ADR if it changes the schema |
 | a new copyable shape others should instantiate | a Template in `templates/` (+ registration in the README navigation table) — not if it merely restates contract text in [02-document-contract.md](02-document-contract.md) |
-| a procedure you run by hand | a Checklist |
+| a procedure you run by hand (or a check you run before a merge) | a **Protocol** in `protocols/` (+ registration in the README navigation table) |
 | a decision that was debated | an ADR under `adrs/` (append-only) |
 | a source awaiting distillation | Raw (outside the served root) |
 | a visual overview | `diagrams/` — derived only, never a source of truth |

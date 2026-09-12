@@ -1,18 +1,19 @@
 ---
-id: new-note-checklist
-category: checklists
+id: new-note-protocol
+category: protocols
 tags:
-- checklist
+- protocol
 - contract
 aliases:
-- New Note Checklist
+- New Note Protocol
 related:
 - document-template
-version: 1.5
+moved_from: [checklists/new-note-checklist.md]
+version: 1.6
 status: active
 ---
 
-# New-Note Checklist
+# New-Note Protocol
 
 ## Problem
 
@@ -61,7 +62,7 @@ Compare a just-written note against the micro-vault in [`../guidelines/09-bootst
 
 ## Common mistakes
 
-- Checking the boxes by editing the checklist instead of the note.
+- Checking the boxes by editing this protocol instead of the note.
 - Adding `related` targets "that sound right" without verifying resolution — the next reviewer
   will, now or later.
 

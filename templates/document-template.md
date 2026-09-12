@@ -7,8 +7,8 @@ tags:
 aliases:
 - Template
 related:
-- new-note-checklist
-version: 1.4
+- new-note-protocol
+version: 1.5
 status: active
 # supersedes: <old-doc-id>   # optional: id of the note this replaces — omit entirely when unused
 # expires_at: 2027-01-01     # optional: strict YYYY-MM-DD review date — omit entirely when unused
@@ -91,4 +91,4 @@ Sources and links to related notes (for example [[payments]]).
 ## References
 
 - [../guidelines/09-bootstrap-workflow.md](../guidelines/09-bootstrap-workflow.md) — the contract instantiated: the inline micro-vault in its Solution.
-- [../checklists/new-note-checklist.md](../checklists/new-note-checklist.md) — the same contract as a checklist.
+- [../protocols/new-note-protocol.md](../protocols/new-note-protocol.md) — the same contract as a protocol.

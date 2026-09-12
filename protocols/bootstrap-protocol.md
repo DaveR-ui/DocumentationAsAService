@@ -1,18 +1,19 @@
 ---
-id: bootstrap-checklist
-category: checklists
+id: bootstrap-protocol
+category: protocols
 tags:
-- checklist
+- protocol
 - bootstrap
 aliases:
-- Bootstrap Checklist
+- Bootstrap Protocol
 related:
 - 09-bootstrap-workflow
-version: 1.5
+moved_from: [checklists/bootstrap-checklist.md]
+version: 1.6
 status: active
 ---
 
-# Corpus Bootstrap Checklist
+# Corpus Bootstrap Protocol
 
 ## Problem
 
@@ -27,7 +28,7 @@ Order matters: each step makes the next one checkable.
 - [ ] Create root `README.md` — THE single entry point: what the corpus is, how to navigate, the
       rules, the table of docs (`File | Purpose | When to read`).
 - [ ] Declare `doc_language` once, in the README frontmatter. No exceptions after that.
-- [ ] Bring the schema layer in: copy or link `templates/document-template.md` and the two checklists.
+- [ ] Bring the schema layer in: copy or link `templates/document-template.md` and the two protocols.
 - [ ] Create 2–4 topic folders *only when the first real note needs one* — no speculative tree. Each starts with its hub `<folder>-index.md`.
 
 **Runbook**
@@ -40,7 +41,7 @@ Order matters: each step makes the next one checkable.
 - [ ] Generated aids (index regions, diagrams) are marked as generated and rebuildable — never hand-patched.
 
 **Review discipline from day one**
-- [ ] Adopt the review catalog (see [`../guidelines/04-validation.md`](../guidelines/04-validation.md)) — walk it over your first notes; the two checklists are the mechanism, no tools required.
+- [ ] Adopt the review catalog (see [`../guidelines/04-validation.md`](../guidelines/04-validation.md)) — walk it over your first notes; the two protocols are the mechanism, no tools required.
 - [ ] Calibrate: walk it against the corpus *as it exists* and demand zero gaps — or write down, explicitly, what you tolerate (accepted debt).
 - [ ] Make the walk a step of every merge the day it catches a real error you agree with.
 - [ ] Walk the catalog with code where it exists: `node validate.js` (errors exit 1).
@@ -57,11 +58,11 @@ Starting any new documentation repo, or auditing an existing one that "grew natu
 ## When not to use
 
 Mid-scale restructuring of a healthy corpus — there, walk the review catalog first and follow its
-findings; this checklist is for when there is no catalog walk yet.
+findings; this protocol is for when there is no catalog walk yet.
 
 ## Examples
 
-This repo dogfoods the checklist: README entry point, numbered guidelines 00–09 (09 is the runbook), templates/checklists as the schema layer and the review mechanism, and the micro-vault inline in guideline 09.
+This repo dogfoods the protocol: README entry point, numbered guidelines 00–09 (09 is the runbook), `templates/`/`protocols/` as the schema layer and the review mechanism, and the micro-vault inline in guideline 09.
 
 ## Common mistakes
 
@@ -73,4 +74,4 @@ This repo dogfoods the checklist: README entry point, numbered guidelines 00–0
 
 - [../guidelines/01-structure.md](../guidelines/01-structure.md) — the layout being bootstrapped.
 - [../guidelines/04-validation.md](../guidelines/04-validation.md) — the catalog being adopted.
-- [../guidelines/09-bootstrap-workflow.md](../guidelines/09-bootstrap-workflow.md) — the runbook that sequences this checklist.
+- [../guidelines/09-bootstrap-workflow.md](../guidelines/09-bootstrap-workflow.md) — the runbook that sequences this protocol.

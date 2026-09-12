@@ -10,7 +10,7 @@ aliases:
 related:
 - 01-structure
 - document-template
-version: 1.1
+version: 1.2
 status: active
 ---
 
@@ -38,7 +38,7 @@ second note. Also as the review reference when a missing-from-hub finding appear
 ## When not to use
 
 Not for the root entry point (README is unique — a second "start here" is a maze); not for
-hub-less schema folders (`templates/`, `checklists/`), whose files register in the entry point's
+hub-less schema folders (`templates/`, `protocols/`), whose files register in the entry point's
 navigation table instead; never as a content page — duplication makes the hub a rival truth.
 
 ## Examples

@@ -1,10 +1,10 @@
 ---
 last_updated: 2026-09-12
 status: active
-description: The agent bootstrap runbook — ordered steps that chain guidelines 00–08 and the checklists into one executable deployment of a corpus's base documentation, with a greenfield/brownfield branch.
+description: The agent bootstrap runbook — ordered steps that chain guidelines 00–08 and the protocols into one executable deployment of a corpus's base documentation, with a greenfield/brownfield branch.
 tags: [bootstrap, workflow, runbook, agents]
-version: 1.2
-related: [00-core-principles, 08-brownfield, bootstrap-checklist]
+version: 1.3
+related: [00-core-principles, 08-brownfield, bootstrap-protocol]
 ---
 
 # Bootstrap Workflow: The Agent Runbook
@@ -30,10 +30,10 @@ restate them.
 | # | Do | Read | Check |
 |---|---|---|---|
 | 1 | Absorb the nine principles. | [00-core-principles.md](00-core-principles.md) | none |
-| 2 | Lay out the tree: entry point, folders, hubs, one topic per file; declare `doc_language` in the README. | [01-structure.md](01-structure.md) | run [bootstrap-checklist](../checklists/bootstrap-checklist.md) |
-| 3 | Write the FIRST real note before any process. | [02-document-contract.md](02-document-contract.md), [templates/document-template.md](../templates/document-template.md) | [new-note-checklist](../checklists/new-note-checklist.md) |
+| 2 | Lay out the tree: entry point, folders, hubs, one topic per file; declare `doc_language` in the README. | [01-structure.md](01-structure.md) | run [bootstrap-protocol](../protocols/bootstrap-protocol.md) |
+| 3 | Write the FIRST real note before any process. | [02-document-contract.md](02-document-contract.md), [templates/document-template.md](../templates/document-template.md) | [new-note-protocol](../protocols/new-note-protocol.md) |
 | 4 | Create the hub for the note's folder; add the generated `index.md` and `tag-index.md` with marker regions. | [03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md) | index region lists every note (the missing-from-hub and stale-index checks in 04) |
-| 5 | Adopt the review catalog: walk each changed note against it before merging; the checklists are the mechanism and `node validate.js` is its machine walk where it exists. | [04-validation.md](04-validation.md) | review clean; the catalog walked on every changed note |
+| 5 | Adopt the review catalog: walk each changed note against it before merging; the protocols are the mechanism and `node validate.js` is its machine walk where it exists. | [04-validation.md](04-validation.md) | review clean; the catalog walked on every changed note |
 | 6 | If an agent will operate in this repo: create `docs/project.md`, audit the query loop. | [06-project-md.md](06-project-md.md), [05-agent-navigation.md](05-agent-navigation.md) | every note reachable in ≤ 3 hops from README |
 | 7 | Wire the docs↔machine interface: load tiers, wiring rules. | [07-agent-consumption.md](07-agent-consumption.md) | no dead anchors |
 | 8 | Steady state: the contract applies to new and touched files; decisions append as ADRs under `adrs/`; missing areas close via 08's gap-close loop. | [03-lifecycle-and-generated-files.md](03-lifecycle-and-generated-files.md), [08-brownfield.md](08-brownfield.md) | review clean against the catalog |
@@ -143,7 +143,7 @@ Two topics, one hub each. Enter here — never by guessing paths.
   (Step 7).
 - [guidelines/08-brownfield.md](08-brownfield.md) — the branch entry and the ratchet (Branch, Step 8).
 - [templates/document-template.md](../templates/document-template.md) — copyable contract (Step 3).
-- [checklists/bootstrap-checklist.md](../checklists/bootstrap-checklist.md) — the Step 2 check.
-- [checklists/new-note-checklist.md](../checklists/new-note-checklist.md) — the Step 3 check.
+- [protocols/bootstrap-protocol.md](../protocols/bootstrap-protocol.md) — the Step 2 check.
+- [protocols/new-note-protocol.md](../protocols/new-note-protocol.md) — the Step 3 check.
 - [diagrams/documentation-architecture.html](../diagrams/documentation-architecture.html) — the
   system in one look.

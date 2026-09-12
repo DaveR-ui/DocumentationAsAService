@@ -1,9 +1,9 @@
 ---
-last_updated: 2026-09-07
+last_updated: 2026-09-12
 status: active
 description: The docs-machine interface — the five load tiers and five wiring rules that make a documentation corpus actionable for an automated reader, with one reference implementation shown as an explicit conditional.
 tags: [agents, interface, wiring, delegation, consumption-tiers]
-version: 1.0
+version: 1.1
 related:
 - 06-project-md
 - 05-agent-navigation
@@ -91,12 +91,12 @@ flowchart LR
   instructions/context-injection list, MCP servers, ...).
 - Always-loaded → `docs/project.md` + the prompt-routing protocol.
 - Read-every-turn → the dispatch workflow enforcing the *interpret-first hard gate*.
-- Looked-up → `docs/context/*.md`, the tag index.
+- Looked-up → `docs/context/*.md`, `docs/protocols/*.md`, the tag index.
 - Machine contracts → subagent prompts + schemas (routing packet, agent snapshot).
 - Rule 5 → the blocked-delegation STOP protocol; Rule 2 → the skill-loading contract.
 
 Everything else in this guide stands without that system: a CI script that greps the Slices
-table, or an MCP server answering from `docs/context/`, obeys the same five rules.
+table, or an MCP server answering from `docs/context/` / `docs/protocols/`, obeys the same five rules.
 
 ## When to use
 
